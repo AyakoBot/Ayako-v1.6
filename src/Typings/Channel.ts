@@ -1,34 +1,34 @@
-import * as Discord from 'discord.js';
+import { ChannelType, PermissionFlagsBits } from 'discord-api-types/v10';
 
 export const GuildTextChannelTypes = [
- Discord.ChannelType.AnnouncementThread,
- Discord.ChannelType.GuildAnnouncement,
- Discord.ChannelType.GuildStageVoice,
- Discord.ChannelType.GuildText,
- Discord.ChannelType.GuildVoice,
- Discord.ChannelType.PrivateThread,
- Discord.ChannelType.PublicThread,
+ ChannelType.AnnouncementThread,
+ ChannelType.GuildAnnouncement,
+ ChannelType.GuildStageVoice,
+ ChannelType.GuildText,
+ ChannelType.GuildVoice,
+ ChannelType.PrivateThread,
+ ChannelType.PublicThread,
 ] as const;
 
 export const AllNonThreadGuildChannelTypes = [
- Discord.ChannelType.GuildAnnouncement,
- Discord.ChannelType.GuildStageVoice,
- Discord.ChannelType.GuildText,
- Discord.ChannelType.GuildVoice,
- Discord.ChannelType.GuildForum,
- Discord.ChannelType.GuildMedia,
+ ChannelType.GuildAnnouncement,
+ ChannelType.GuildStageVoice,
+ ChannelType.GuildText,
+ ChannelType.GuildVoice,
+ ChannelType.GuildForum,
+ ChannelType.GuildMedia,
 ] as const;
 
 export const AllThreadGuildChannelTypes = [
- Discord.ChannelType.PublicThread,
- Discord.ChannelType.PrivateThread,
- Discord.ChannelType.AnnouncementThread,
+ ChannelType.PublicThread,
+ ChannelType.PrivateThread,
+ ChannelType.AnnouncementThread,
 ] as const;
 
 export const ChannelBanBits = [
- Discord.PermissionsBitField.Flags.SendMessages,
- Discord.PermissionsBitField.Flags.SendMessagesInThreads,
- Discord.PermissionsBitField.Flags.ViewChannel,
- Discord.PermissionsBitField.Flags.AddReactions,
- Discord.PermissionsBitField.Flags.Connect,
+ PermissionFlagsBits.SendMessages,
+ PermissionFlagsBits.SendMessagesInThreads,
+ PermissionFlagsBits.ViewChannel,
+ PermissionFlagsBits.AddReactions,
+ PermissionFlagsBits.Connect,
 ] as const;

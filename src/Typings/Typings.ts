@@ -1,11 +1,12 @@
 import { StoredPunishmentTypes } from '@prisma/client';
-import * as Discord from 'discord.js';
+import type { APIApplicationCommandAutocompleteInteraction } from 'discord-api-types/v10.js';
+import type { RChannel, RGuild, RMessage, RRole, RUser } from './Redis.js';
 
 export type * from '../BaseClient/Cluster/Redis.js';
+export * from '../SlashCommands/index.js';
 export type * from './DataBase.js';
 export * from './Settings.js';
 export type * from './TopGG.js';
-export * from '../SlashCommands/index.js';
 
 export type Language = import('../BaseClient/Other/language.js').default;
 
@@ -17,7 +18,7 @@ export interface Command<T extends boolean | undefined> {
  type: 'mod' | 'other' | 'owner';
  requiresSlashCommand: boolean;
  default: (
-  msg: Discord.Message<T extends true ? false : true>,
+  msg: RMessage,
   args: string[],
   {
    language,
@@ -35,7 +36,7 @@ export type AcceptedMergingTypes = 'string' | 'boolean' | 'difference' | 'icon' 
 
 export interface AutoCompleteFile {
  default: (
-  cmd: Discord.AutocompleteInteraction<'cached'> | { guild: Discord.Guild },
+  cmd: APIApplicationCommandAutocompleteInteraction | { guild: RGuild },
  ) => Promise<{ name: string; value: string }[] | undefined>;
 }
 
@@ -75,17 +76,6 @@ export type Appeal = {
 
 export type NeverNull<T, K extends keyof T> = {
  [P in keyof T]: P extends K ? NonNullable<T[P]> : T[P];
-};
-
-export type UsualMessagePayload = {
- embeds?: Discord.APIEmbed[];
- content?: string;
- components?: Discord.APIActionRowComponent<
-  Discord.APIButtonComponent | Discord.APISelectMenuComponent
- >[];
- files?: Discord.AttachmentPayload[];
- ephemeral?: boolean;
- allowed_mentions?: Discord.APIAllowedMentions;
 };
 
 export type HelpCommand =
@@ -154,23 +144,13 @@ export const ModColors: Record<ModTypes, Colors> = {
 export type BaseOptions = {
  reason: string;
  dbOnly: boolean;
- guild: Discord.Guild;
- target: Discord.User;
- executor: Discord.User;
+ guild: RGuild;
+ target: RUser;
+ executor: RUser;
  skipChecks: boolean;
 };
 
-type Channel = {
- channel:
-  | Discord.NewsChannel
-  | Discord.StageChannel
-  | Discord.TextChannel
-  | Discord.VoiceChannel
-  | Discord.ForumChannel
-  | Discord.MediaChannel;
-};
-
-type Roles = { roles: Discord.Role[] };
+type Roles = { roles: RRole[] };
 type Temp = { duration: number };
 type Empty = NonNullable<unknown>;
 type DeleteMessageSeconds = { deleteMessageSeconds: number };
@@ -183,9 +163,9 @@ type SpecificOpts = {
  [ModTypes.BanAdd]: DeleteMessageSeconds;
  [ModTypes.SoftBanAdd]: DeleteMessageSeconds;
  [ModTypes.TempBanAdd]: Temp & DeleteMessageSeconds;
- [ModTypes.ChannelBanAdd]: Channel;
- [ModTypes.TempChannelBanAdd]: Channel & Temp;
- [ModTypes.ChannelBanRemove]: Channel;
+ [ModTypes.ChannelBanAdd]: RChannel;
+ [ModTypes.TempChannelBanAdd]: RChannel & Temp;
+ [ModTypes.ChannelBanRemove]: RChannel;
  [ModTypes.BanRemove]: Empty;
  [ModTypes.KickAdd]: Empty;
  [ModTypes.WarnAdd]: Empty;

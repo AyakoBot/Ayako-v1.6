@@ -1,4 +1,10 @@
-import type * as Discord from 'discord.js';
+import type {
+ APIActionRowComponent,
+ APIChatInputApplicationCommandGuildInteraction,
+ APIEmbed,
+ APIMessageActionRowComponent,
+ APIMessageComponentButtonInteraction,
+} from 'discord-api-types/v10.js';
 import type { ChangeSelectType } from '../BaseClient/UtilModules/settingsHelpers/getChangeSelectType.js';
 import { GlobalDescType } from '../BaseClient/UtilModules/settingsHelpers/getGlobalDesc.js';
 import type { MentionTypes } from '../BaseClient/UtilModules/settingsHelpers/getMention.js';
@@ -7,6 +13,7 @@ import type { DataBaseTables } from './DataBase.js';
 
 import type util from '../BaseClient/Bot/Util.js';
 import * as DB from './DataBase.js';
+import type { RGuild } from './Redis.js';
 
 export { ChannelTypes, GlobalDescType, type ChangeSelectType, type MentionTypes };
 
@@ -78,23 +85,23 @@ export interface SettingsFile<K extends MatchingCategoryKeys> {
   settings: DB.DataBaseTables[(typeof SettingsName2TableName)[K]],
   language: Language,
   lan: Categories[K],
-  guild: Discord.Guild,
- ) => Discord.APIEmbed[] | Promise<Discord.APIEmbed[]>;
+  guild: RGuild,
+ ) => APIEmbed[] | Promise<APIEmbed[]>;
  getComponents: (
   buttonParsers: (typeof util)['settingsHelpers']['buttonParsers'],
   settings: DB.DataBaseTables[(typeof SettingsName2TableName)[K]],
   language: Language,
  ) =>
-  | Discord.APIActionRowComponent<Discord.APIMessageActionRowComponent>[]
-  | Promise<Discord.APIActionRowComponent<Discord.APIMessageActionRowComponent>[]>;
+  | APIActionRowComponent<APIMessageActionRowComponent>[]
+  | Promise<APIActionRowComponent<APIMessageActionRowComponent>[]>;
  showAll?: (
-  cmd: Discord.ChatInputCommandInteraction<'cached'> | Discord.ButtonInteraction<'cached'>,
+  cmd: APIChatInputApplicationCommandGuildInteraction | APIMessageComponentButtonInteraction,
   language: Language,
   lan: Categories[K],
   page: number,
  ) => Promise<void>;
  showId?: (
-  cmd: Discord.ChatInputCommandInteraction<'cached'> | Discord.ButtonInteraction<'cached'>,
+  cmd: APIChatInputApplicationCommandGuildInteraction | APIMessageComponentButtonInteraction,
   id: string,
   language: Language,
   lan: Categories[K],
@@ -103,7 +110,7 @@ export interface SettingsFile<K extends MatchingCategoryKeys> {
   oldSetting: DB.DataBaseTables[(typeof SettingsName2TableName)[K]] | undefined,
   newSetting: DB.DataBaseTables[(typeof SettingsName2TableName)[K]] | undefined,
   changedSetting: keyof DB.DataBaseTables[(typeof SettingsName2TableName)[K]],
-  guild: Discord.Guild,
+  guild: RGuild,
   uniquetimestamp?: number | string,
  ) => Promise<void>;
 }
