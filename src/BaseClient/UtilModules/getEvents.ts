@@ -1,5 +1,4 @@
 import { glob } from 'glob';
-import * as Discord from 'discord.js';
 
 const eventPath = `${process.cwd()}${process.cwd().includes('dist') ? '' : '/dist'}/Events`;
 

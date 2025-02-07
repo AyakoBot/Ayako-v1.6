@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.ButtonInteraction, args: string[], accept: boolean = true) => {
  if (!cmd.inCachedGuild()) return;

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { API } from '../../../../BaseClient/Bot/Client.js';
 import * as CT from '../../../../Typings/Typings.js';
 import { canCreateThread } from '../../../../BaseClient/UtilModules/requestHandler/channels/createThread.js';

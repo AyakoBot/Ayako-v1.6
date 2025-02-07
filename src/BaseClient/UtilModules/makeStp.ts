@@ -9,7 +9,6 @@
  * @remarks This function modifies the following properties that accept text:
  * title, description, footer.text, author.name, fields.name, and fields.value.
  */
-import * as Discord from 'discord.js';
 import stp from './stp.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

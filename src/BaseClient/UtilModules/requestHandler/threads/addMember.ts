@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import error, { sendDebugMessage } from '../../error.js';
 
 import getBotMemberFromGuild from '../../getBotMemberFromGuild.js';

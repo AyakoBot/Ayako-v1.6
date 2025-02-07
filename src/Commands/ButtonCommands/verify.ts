@@ -1,8 +1,7 @@
-import * as Discord from 'discord.js';
 import verify from './verification/verify.js';
 import { getPayload } from '../SlashCommands/settings/automation/verification.js';
 
-export default async (cmd: Discord.ButtonInteraction<'cached'>) => {
+export default async (cmd: APIMessageComponentButtonInteraction) => {
  verify(cmd);
 
  const language = await cmd.guild.client.util.getLanguage(cmd.guildId);

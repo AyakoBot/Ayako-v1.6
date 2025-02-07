@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Classes from '../../../Other/classes.js';
 import error, { sendDebugMessage } from '../../error.js';
 

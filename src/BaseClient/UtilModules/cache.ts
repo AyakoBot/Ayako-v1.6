@@ -1,5 +1,4 @@
 import * as DiscordCore from '@discordjs/core';
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 
 import auditLogs, { type AuditLogs } from './cache/discord/auditLogs.js';

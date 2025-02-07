@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { PunishmentType } from '../../../Typings/Typings.js';
 import { getPayload } from '../../SlashCommands/mod/check.js';
 

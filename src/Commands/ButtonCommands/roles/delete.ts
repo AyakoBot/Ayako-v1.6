@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { canDeleteRole } from '../../../BaseClient/UtilModules/requestHandler/guilds/deleteRole.js';
 
 export default async (cmd: Discord.ButtonInteraction, args: string[]) => {

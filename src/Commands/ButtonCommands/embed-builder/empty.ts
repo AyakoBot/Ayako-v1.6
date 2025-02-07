@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { EmbedFields } from '../../../BaseClient/Other/constants/customEmbeds.js';
 import { getSelectedProperty } from '../../../Events/BotEvents/messageEvents/messageCreate/customEmbedThread.js';
 import { getSelectedField } from './deleteCustom.js';

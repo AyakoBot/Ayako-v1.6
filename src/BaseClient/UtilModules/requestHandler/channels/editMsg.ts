@@ -1,5 +1,4 @@
 import * as DiscordCore from '@discordjs/core';
-import * as Discord from 'discord.js';
 import * as Classes from '../../../Other/classes.js';
 import error from '../../error.js';
 

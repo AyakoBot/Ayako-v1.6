@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { EmbedFields } from '../../../../BaseClient/Other/constants/customEmbeds.js';
 import { getSelectedField } from '../../../../Commands/ButtonCommands/embed-builder/deleteCustom.js';
 import { getLength } from '../../../../Commands/SelectCommands/StringSelect/embed-builder/create/string.js';

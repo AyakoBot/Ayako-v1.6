@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 type ActionType = Discord.GuildAuditLogsEntry<
  Discord.AuditLogEvent,

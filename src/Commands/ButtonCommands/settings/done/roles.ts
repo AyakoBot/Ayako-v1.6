@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { canEditRole } from '../../../../BaseClient/UtilModules/requestHandler/guilds/editRole.js';
 import * as CT from '../../../../Typings/Typings.js';
 

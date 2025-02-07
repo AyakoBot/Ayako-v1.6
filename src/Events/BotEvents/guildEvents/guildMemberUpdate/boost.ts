@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (oldMember: Discord.GuildMember, member: Discord.GuildMember) => {
  if (oldMember.premiumSinceTimestamp === member.premiumSinceTimestamp) return;

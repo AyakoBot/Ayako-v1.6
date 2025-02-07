@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 const settingName = CT.SettingNames.DenylistRules;

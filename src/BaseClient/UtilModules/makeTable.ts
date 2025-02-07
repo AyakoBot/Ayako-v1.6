@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Creates a formatted table from a 2D array of strings.

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import client from '../../../BaseClient/Bot/Client.js';
 
 export default async (cmd: Discord.ButtonInteraction, _args: string[], up = true) => {
@@ -48,7 +47,7 @@ export default async (cmd: Discord.ButtonInteraction, _args: string[], up = true
  cmd.update({ embeds: [embed] });
 };
 
-export const isValid = async (cmd: Discord.ButtonInteraction<'cached'>) => {
+export const isValid = async (cmd: APIMessageComponentButtonInteraction) => {
  const language = await client.util.getLanguage(cmd.guildId);
  const lan = language.slashCommands.suggest;
  const settings = await client.util.DataBase.suggestionsettings.findUnique({

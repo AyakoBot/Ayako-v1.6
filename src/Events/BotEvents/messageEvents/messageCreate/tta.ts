@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (msg: Discord.Message) => {
  if (msg.author.id !== process.env.ownerId) return;

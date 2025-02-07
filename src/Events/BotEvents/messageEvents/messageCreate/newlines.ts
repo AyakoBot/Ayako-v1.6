@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { PunishmentType } from '@prisma/client';
 import * as CT from '../../../../Typings/Typings.js';
 

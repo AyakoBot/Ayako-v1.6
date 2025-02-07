@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 type ClearType =
  | 'all'
@@ -99,7 +98,7 @@ export default async (
 
 const getMessages = async (
  type: ClearType,
- cmd: Discord.ChatInputCommandInteraction<'cached'> & { channel: Discord.GuildTextBasedChannel },
+ cmd: APIChatInputApplicationCommandGuildInteraction & { channel: Discord.GuildTextBasedChannel },
  channel: Discord.GuildTextBasedChannel,
 ) => {
  switch (type) {

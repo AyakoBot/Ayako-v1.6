@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default async (oldMember: Discord.GuildMember, member: Discord.GuildMember) => {

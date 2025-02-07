@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Returns the true type of a Discord channel.

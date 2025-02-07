@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { ChannelBanBits } from '../../../../Typings/Channel.js';
 import * as CT from '../../../../Typings/Typings.js';
 

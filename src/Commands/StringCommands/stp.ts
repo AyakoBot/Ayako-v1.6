@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export const name = 'stp';
 export const takesFirstArg = true;

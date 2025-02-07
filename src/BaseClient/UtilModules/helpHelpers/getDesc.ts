@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as util from '../util.js';
 
 /**

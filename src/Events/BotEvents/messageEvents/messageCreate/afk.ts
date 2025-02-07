@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import Jobs from 'node-schedule';
 import * as CT from '../../../../Typings/Typings.js';
 import { getContent } from '../../autoModerationActionEvents/censor.js';

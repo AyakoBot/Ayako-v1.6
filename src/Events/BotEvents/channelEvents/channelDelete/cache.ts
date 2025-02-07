@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import log from '../../messageEvents/messageDelete/log.js';
 
 export default async (channel: Discord.Channel) => {

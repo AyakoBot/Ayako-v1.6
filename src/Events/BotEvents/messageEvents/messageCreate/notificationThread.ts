@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (msg: Discord.Message<true>) => {
  if (!msg.guild) return;

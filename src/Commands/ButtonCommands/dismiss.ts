@@ -1,6 +1,5 @@
-import * as Discord from 'discord.js';
 
-export default async (cmd: Discord.ButtonInteraction<'cached'>) => {
+export default async (cmd: APIMessageComponentButtonInteraction) => {
  await cmd.deferUpdate();
  cmd.deleteReply();
 };

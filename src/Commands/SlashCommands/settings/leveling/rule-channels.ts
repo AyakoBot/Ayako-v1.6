@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import ChannelRules from '../../../../BaseClient/Other/ChannelRules.js';
 import client from '../../../../BaseClient/Bot/Client.js';
 import * as CT from '../../../../Typings/Typings.js';

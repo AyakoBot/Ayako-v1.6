@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { canDeleteInvite } from '../../../BaseClient/UtilModules/requestHandler/invites/delete.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

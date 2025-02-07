@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { isValid } from './tick.js';
 
 export default async (cmd: Discord.ButtonInteraction, _args: [], accept = true) => {

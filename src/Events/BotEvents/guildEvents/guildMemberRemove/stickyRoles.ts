@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (member: Discord.GuildMember) => {
  member.client.util.DataBase.stickyrolemembers

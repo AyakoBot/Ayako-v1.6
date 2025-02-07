@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as os from 'os';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

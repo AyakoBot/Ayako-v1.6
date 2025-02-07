@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromError.js';
 import { type Language } from '../../../../Typings/Typings.js';

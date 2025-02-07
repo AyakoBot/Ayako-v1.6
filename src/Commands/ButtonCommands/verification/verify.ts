@@ -1,9 +1,8 @@
 import Prisma from '@prisma/client';
 import { CaptchaGenerator } from 'captcha-canvas';
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 
-export default async (cmd: Discord.ButtonInteraction<'cached'>) => {
+export default async (cmd: APIMessageComponentButtonInteraction) => {
  if (!cmd.inCachedGuild()) return;
 
  const verification = await cmd.client.util.DataBase.verification.findUnique({
@@ -20,7 +19,7 @@ export default async (cmd: Discord.ButtonInteraction<'cached'>) => {
 };
 
 const isVerified = async (
- cmd: Discord.ButtonInteraction<'cached'>,
+ cmd: APIMessageComponentButtonInteraction,
  verification: Prisma.verification,
  language: CT.Language,
 ) => {

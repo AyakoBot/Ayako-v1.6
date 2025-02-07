@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 import DataBase from '../../Bot/DataBase.js';
 import getPunishment from '../getPunishment.js';

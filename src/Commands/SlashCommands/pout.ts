@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
-export default (cmd: Discord.ChatInputCommandInteraction<'cached'>) =>
+export default (cmd: APIChatInputApplicationCommandGuildInteraction) =>
  cmd.client.util.interactionHelpers(cmd);

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import client from '../../../BaseClient/Bot/Client.js';
 import { tasksWithSettings } from '../../../BaseClient/Other/firstGuildInteraction.js';
 import * as CT from '../../../Typings/Typings.js';

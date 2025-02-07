@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import Jobs from 'node-schedule';
 import client from '../../../../BaseClient/Bot/Client.js';
 import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromError.js';
@@ -13,7 +12,7 @@ export default async (msg: Discord.Message<true>) => {
 };
 
 export const disboardSent = async (
- msg: Discord.Message<true> | Discord.ButtonInteraction<'cached'>,
+ msg: Discord.Message<true> | APIMessageComponentButtonInteraction,
 ) => {
  client.util.cache.disboardBumpReminders.delete(msg.guildId);
 

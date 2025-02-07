@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import ms, { type StringValue } from 'ms';
 import * as CT from '../../../../Typings/Typings.js';
 import { getAPIRule } from '../../../ButtonCommands/settings/autoModRule/boolean.js';

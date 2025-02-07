@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { scheduleJob } from 'node-schedule';
 import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromError.js';
 import log from './log.js';

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { makePayload } from './dmLog.js';
 
 export default async (msg: Discord.Message<true>) => {

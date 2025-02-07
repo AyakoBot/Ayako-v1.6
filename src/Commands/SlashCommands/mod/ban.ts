@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 import { checkCommandPermissions } from '../../../Events/BotEvents/messageEvents/messageCreate/commandHandler.js';
 
@@ -40,7 +39,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
 };
 
 export const isBlocked = async (
- cmd: Discord.ChatInputCommandInteraction<'cached'> | Discord.Message<true>,
+ cmd: APIChatInputApplicationCommandGuildInteraction | Discord.Message<true>,
  user: Discord.User,
  member: Discord.GuildMember | null,
  type: CT.ModTypes,

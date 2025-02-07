@@ -1,5 +1,4 @@
 import Prisma, { LevelType, type leveling } from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import * as StringSimilarity from 'string-similarity';
 import ChannelRules from '../../../../BaseClient/Other/ChannelRules.js';

@@ -1,7 +1,6 @@
-import * as Discord from 'discord.js';
 import { canEdit } from '../../../BaseClient/UtilModules/requestHandler/channels/edit.js';
 
-export default async (cmd: Discord.ChatInputCommandInteraction<'cached'>) => {
+export default async (cmd: APIChatInputApplicationCommandGuildInteraction) => {
  const channel = cmd.options.getChannel('channel', true, [
   Discord.ChannelType.GuildAnnouncement,
   Discord.ChannelType.GuildText,

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.MessageContextMenuCommandInteraction) => {
  const json = JSON.stringify(cmd.targetMessage.toJSON(), null, 2);

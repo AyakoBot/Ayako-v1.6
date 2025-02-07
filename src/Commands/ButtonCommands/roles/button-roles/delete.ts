@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import {
  type Type,
  getBaseSettings,

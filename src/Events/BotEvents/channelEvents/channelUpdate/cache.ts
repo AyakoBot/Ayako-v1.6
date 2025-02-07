@@ -1,5 +1,4 @@
 import { StoredPunishmentTypes } from '@prisma/client';
-import * as Discord from 'discord.js';
 
 export default async (
  _oldChannel:

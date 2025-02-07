@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 import { getAPIRule } from '../../../ButtonCommands/settings/autoModRule/boolean.js';
 import * as SettingsFile from '../../../SlashCommands/settings/moderation/denylist-rules.js';

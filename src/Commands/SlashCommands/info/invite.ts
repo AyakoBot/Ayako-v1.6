@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {
  const ephemeral = cmd.options.getBoolean('hide', false) ?? true;

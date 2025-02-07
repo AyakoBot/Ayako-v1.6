@@ -1,5 +1,4 @@
 import * as Jobs from 'node-schedule';
-import * as Discord from 'discord.js';
 import getBotMemberFromGuild from './getBotMemberFromGuild.js';
 import getPathFromError from './getPathFromError.js';
 import { canSetVCStatus } from './requestHandler/channels/setVCStatus.js';

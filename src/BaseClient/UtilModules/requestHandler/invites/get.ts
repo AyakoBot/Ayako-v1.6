@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 // eslint-disable-next-line import/extensions
 import type { RawInviteData } from 'discord.js/typings/rawDataTypes.js';
 import * as Classes from '../../../Other/classes.js';

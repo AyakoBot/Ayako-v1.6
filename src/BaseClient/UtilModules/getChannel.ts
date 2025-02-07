@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Fetches a channel by its ID.

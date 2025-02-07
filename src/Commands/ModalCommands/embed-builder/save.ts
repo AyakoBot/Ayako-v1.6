@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.ModalSubmitInteraction) => {
  if (!cmd.isFromMessage()) return;

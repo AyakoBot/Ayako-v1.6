@@ -1,7 +1,6 @@
-import * as Discord from 'discord.js';
 import Emojis from '../../../../BaseClient/Other/Emojis.js';
 
-export default async (cmd: Discord.ChatInputCommandInteraction<'cached'>) => {
+export default async (cmd: APIChatInputApplicationCommandGuildInteraction) => {
  if (!cmd.inCachedGuild()) return;
 
  const language = await cmd.client.util.getLanguage(cmd.guildId);

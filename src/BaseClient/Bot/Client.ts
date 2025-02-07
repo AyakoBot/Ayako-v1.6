@@ -1,6 +1,5 @@
 import * as DiscordCore from '@discordjs/core';
 import * as Sharding from 'discord-hybrid-sharding';
-import * as Discord from 'discord.js';
 
 const client = new Discord.Client({
  shards: Sharding.getInfo().SHARD_LIST,

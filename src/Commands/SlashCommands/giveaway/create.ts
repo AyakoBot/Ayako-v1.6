@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import * as CT from '../../../Typings/Typings.js';
 import { end, getButton, getGiveawayEmbed } from './end.js';

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { API } from '../../../Bot/Client.js';
 import error from '../../error.js';
 import { getAPI } from '../channels/addReaction.js';

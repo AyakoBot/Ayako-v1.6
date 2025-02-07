@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import Jobs from 'node-schedule';
 import * as CT from '../../Typings/Typings.js';
 import DataBase from '../Bot/DataBase.js';

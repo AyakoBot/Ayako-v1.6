@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import { filtered_content as filterContent } from '../../../../rust/rust.js';
 
 export default async (msg: Discord.AutoModerationActionExecution) => {

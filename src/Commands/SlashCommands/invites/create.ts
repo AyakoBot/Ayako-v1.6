@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { canCreateInvite } from '../../../BaseClient/UtilModules/requestHandler/channels/createInvite.js';
 import { AllNonThreadGuildChannelTypes } from '../../../Typings/Channel.js';
 

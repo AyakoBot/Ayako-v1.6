@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { getEmbed, getLongest, getOwnLevel } from './server.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

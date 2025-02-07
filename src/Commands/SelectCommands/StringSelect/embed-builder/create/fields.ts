@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import startOver from '../../../../ButtonCommands/embed-builder/startOver.js';
 
 export default async (cmd: Discord.StringSelectMenuInteraction) => {

@@ -1,5 +1,4 @@
 import { StoredPunishmentTypes, type punishments } from '@prisma/client';
-import * as Discord from 'discord.js';
 import type { languages } from '../../../BaseClient/Other/language.js';
 import client from '../../../BaseClient/Bot/Client.js';
 import * as CT from '../../../Typings/Typings.js';

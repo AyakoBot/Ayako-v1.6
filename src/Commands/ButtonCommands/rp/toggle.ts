@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import rp from '../../SlashCommands/rp/manager.js';
 
 export default async (cmd: Discord.ButtonInteraction) => {
@@ -47,7 +46,7 @@ export default async (cmd: Discord.ButtonInteraction) => {
  rp(cmd, [], true);
 };
 
-const deleteAll = async (cmd: Discord.ButtonInteraction<'cached'>) => {
+const deleteAll = async (cmd: APIMessageComponentButtonInteraction) => {
  const commands = await cmd.guild.client.util.request.commands.getGuildCommands(cmd.guild);
  if ('message' in commands) {
   cmd.guild.client.util.error(cmd.guild, new Error(commands.message));

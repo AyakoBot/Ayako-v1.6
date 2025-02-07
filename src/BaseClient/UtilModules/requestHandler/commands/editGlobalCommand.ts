@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { API } from '../../../Bot/Client.js';
 import { guild as getBotIdFromGuild } from '../../getBotIdFrom.js';
 import cache from '../../cache.js';

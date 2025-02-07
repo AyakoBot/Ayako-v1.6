@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { EmbedFields } from '../../../../../BaseClient/Other/constants/customEmbeds.js';
 
 export default async (cmd: Discord.StringSelectMenuInteraction, args: string[]) => {

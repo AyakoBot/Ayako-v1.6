@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import constants from '../Other/constants.js';
 import getMessage from './getMessage.js';
 

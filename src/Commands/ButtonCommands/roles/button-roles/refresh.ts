@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import run from '../../../SlashCommands/roles/builders/button-roles.js';
 
 export default async (

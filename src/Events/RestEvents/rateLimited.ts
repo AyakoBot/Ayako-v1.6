@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (info: Discord.RateLimitData) => {
  if (!process.argv.includes('--debug')) return;

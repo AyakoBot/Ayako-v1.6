@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 import shop from './roles/shop.js';
 import customRole from './roles/customRole.js';

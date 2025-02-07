@@ -1,6 +1,5 @@
 import { Prisma } from '@prisma/client';
 import * as Sharding from 'discord-hybrid-sharding';
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 
 import * as endGiveaway from '../../Commands/SlashCommands/giveaway/end.js';

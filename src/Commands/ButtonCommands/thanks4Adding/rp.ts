@@ -1,7 +1,6 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 
-export default async (cmd: Discord.ButtonInteraction<'cached'>) => {
+export default async (cmd: APIMessageComponentButtonInteraction) => {
  const language = await cmd.client.util.getLanguage(cmd.guildId);
 
  cmd.client.util.replyCmd(cmd, {

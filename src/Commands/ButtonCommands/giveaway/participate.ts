@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 import { getGiveawayEmbed } from '../../SlashCommands/giveaway/end.js';
 
@@ -64,7 +63,7 @@ export default async (cmd: Discord.ButtonInteraction) => {
 };
 
 const edit = async (
- cmd: Discord.ButtonInteraction<'cached'>,
+ cmd: APIMessageComponentButtonInteraction,
  language: CT.Language,
  giveaway: Prisma.giveaways,
 ) => {

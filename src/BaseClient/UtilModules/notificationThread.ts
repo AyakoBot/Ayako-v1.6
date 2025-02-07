@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import { Colors, type UsualMessagePayload } from '../../Typings/Typings.js';
 import deleteThread from './deleteNotificationThread.js';

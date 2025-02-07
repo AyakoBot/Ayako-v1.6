@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import merge from 'lodash.merge';
 import client from '../Bot/Client.js';
 import stp from '../UtilModules/stp.js';

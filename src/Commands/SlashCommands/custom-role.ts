@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { getContent } from '../../Events/BotEvents/autoModerationActionEvents/censor.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

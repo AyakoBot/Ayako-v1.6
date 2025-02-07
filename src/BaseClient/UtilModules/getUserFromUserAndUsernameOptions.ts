@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import errorCmd from './errorCmd.js';
 import { getLanguage } from './getLanguage.js';
 import getUser from './getUser.js';

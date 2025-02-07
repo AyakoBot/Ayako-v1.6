@@ -1,5 +1,4 @@
 import type { guildsettings } from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 
 export default async (
@@ -59,7 +58,7 @@ export default async (
 export const getComponents = (
  language: CT.Language,
  lan: CT.Language['slashCommands']['rp'],
- cmd: Discord.ChatInputCommandInteraction<'cached'> | Discord.ButtonInteraction<'cached'>,
+ cmd: APIChatInputApplicationCommandGuildInteraction | APIMessageComponentButtonInteraction,
  guildsettings?: CT.DataBaseTables['guildsettings'] & { appid: string | null },
 ): Discord.APIActionRowComponent<Discord.APIButtonComponent>[] => [
  {

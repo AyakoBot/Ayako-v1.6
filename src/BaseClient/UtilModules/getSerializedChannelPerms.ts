@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Returns an array of serialized permission objects for a given guild channel.

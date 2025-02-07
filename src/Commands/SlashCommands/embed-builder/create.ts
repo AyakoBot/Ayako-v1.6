@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 
 export const buildEmbed = async (
@@ -101,7 +100,7 @@ export default buildEmbed;
 const getOptions = async (
  cmd:
   | Discord.CommandInteraction<'cached'>
-  | Discord.ButtonInteraction<'cached'>
+  | APIMessageComponentButtonInteraction
   | Discord.StringSelectMenuInteraction<'cached'>,
 ) =>
  cmd.client.util.DataBase.customembeds

@@ -1,9 +1,8 @@
-import * as Discord from 'discord.js';
 import { getContent } from '../../Events/BotEvents/autoModerationActionEvents/censor.js';
 import * as CT from '../../Typings/Typings.js';
 
 export default async (
- cmd: Discord.ChatInputCommandInteraction<'cached'> | Discord.Message<true>,
+ cmd: APIChatInputApplicationCommandGuildInteraction | Discord.Message<true>,
  text?: string,
 ) => {
  if (cmd instanceof Discord.ChatInputCommandInteraction && !cmd.inCachedGuild()) return;

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import cache from './cache.js';
 import SlashCommands from '../../SlashCommands/index.js';
 

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (
  reaction: Discord.MessageReaction,

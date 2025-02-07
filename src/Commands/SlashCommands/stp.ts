@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.CommandInteraction) => {
  const language = await cmd.client.util.getLanguage(cmd.guild?.id);

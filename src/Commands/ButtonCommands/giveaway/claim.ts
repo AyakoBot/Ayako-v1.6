@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { getButton, getClaimButton, getMessage } from '../../SlashCommands/giveaway/end.js';
 
 export default async (cmd: Discord.ButtonInteraction) => {

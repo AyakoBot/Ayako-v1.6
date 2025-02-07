@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import SlashCommands from '../../SlashCommands/index.js';
 import * as CT from '../../Typings/Typings.js';
 import { getLanguage } from './getLanguage.js';

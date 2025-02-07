@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import constants from '../Other/constants.js';
 import getReferenceMessage from './getReferenceMessage.js';
 import { request } from './requestHandler.js';

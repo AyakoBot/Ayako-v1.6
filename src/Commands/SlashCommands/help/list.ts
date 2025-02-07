@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { glob } from 'glob';
 import SlashCommands from '../../../SlashCommands/index.js';
 import * as CT from '../../../Typings/Typings.js';

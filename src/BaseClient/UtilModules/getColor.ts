@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { findBestMatch } from 'string-similarity';
 import * as CT from '../../Typings/Typings.js';
 

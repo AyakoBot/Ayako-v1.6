@@ -1,6 +1,5 @@
 import Prisma from '@prisma/client';
 import { type Serialized } from 'discord-hybrid-sharding';
-import * as Discord from 'discord.js';
 import { parentPort } from 'worker_threads';
 
 interface Data {

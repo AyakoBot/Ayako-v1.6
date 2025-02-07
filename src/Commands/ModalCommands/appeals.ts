@@ -1,5 +1,4 @@
 import { AppealStatus } from '@prisma/client';
-import * as Discord from 'discord.js';
 import client from '../../BaseClient/Bot/Client.js';
 import { getPunishment } from '../../Events/ClusterEvents/appeal.js';
 import * as CT from '../../Typings/Typings.js';

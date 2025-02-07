@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import { getPrefix } from '../../Events/BotEvents/messageEvents/messageCreate/commandHandler.js';
 import * as CT from '../../Typings/Typings.js';
@@ -213,8 +212,8 @@ const reply = async (
 
    cmd.update(payload as Discord.InteractionUpdateOptions);
   } else {
-   if (await isDeleteable((cmd as Discord.ButtonInteraction<'cached'>).message)) {
-    request.channels.deleteMessage((cmd as Discord.ButtonInteraction<'cached'>).message);
+   if (await isDeleteable((cmd as APIMessageComponentButtonInteraction).message)) {
+    request.channels.deleteMessage((cmd as APIMessageComponentButtonInteraction).message);
    }
 
    payload.ephemeral = false;

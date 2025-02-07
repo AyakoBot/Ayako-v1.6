@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { findBestMatch } from 'string-similarity';
 import Emojis from '../../../../BaseClient/Other/Emojis.js';
 import * as CT from '../../../../Typings/Typings.js';

@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 type DirectProperties<T> = Pick<T, keyof T>;
 

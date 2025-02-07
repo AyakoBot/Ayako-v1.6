@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (member: Discord.GuildMember) => {
  const customRole = await member.client.util.DataBase.customroles.delete({

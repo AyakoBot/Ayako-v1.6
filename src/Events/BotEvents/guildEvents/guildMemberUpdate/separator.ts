@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-shadow
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import Jobs from 'node-schedule';
 import { Worker } from 'worker_threads';
 import client from '../../../../BaseClient/Bot/Client.js';
@@ -115,7 +114,7 @@ export default (oldMember: Discord.GuildMember, member: Discord.GuildMember) => 
 };
 
 export const oneTimeRunner = async (
- cmd: Discord.ChatInputCommandInteraction<'cached'> | undefined,
+ cmd: APIChatInputApplicationCommandGuildInteraction | undefined,
  guild: Discord.Guild,
  lastRun: boolean = false,
 ) => {

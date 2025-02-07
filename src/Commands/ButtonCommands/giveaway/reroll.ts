@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { checkCommandPermissions } from '../../../Events/BotEvents/messageEvents/messageCreate/commandHandler.js';
 import { end } from '../../SlashCommands/giveaway/end.js';
 

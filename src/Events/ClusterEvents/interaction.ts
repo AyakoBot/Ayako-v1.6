@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import client from '../../BaseClient/Bot/Client.js';
 import * as Classes from '../../BaseClient/Other/classes.js';
 import requestHandler from '../../BaseClient/UtilModules/requestHandler.js';

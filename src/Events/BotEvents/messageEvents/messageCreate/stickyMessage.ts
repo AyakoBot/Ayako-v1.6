@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import { Stream } from 'stream';
 import * as CT from '../../../../Typings/Typings.js';

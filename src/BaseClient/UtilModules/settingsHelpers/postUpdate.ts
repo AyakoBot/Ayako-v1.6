@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { glob } from 'glob';
 import * as CT from '../../../Typings/Typings.js';
 import constants from '../../Other/constants.js';

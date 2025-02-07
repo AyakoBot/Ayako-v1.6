@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import gifSelection, { type ReturnType } from './cache/bot/gifs.js';
 import objectEmotes from './emotes.js';
 import getBotMemberFromGuild from './getBotMemberFromGuild.js';

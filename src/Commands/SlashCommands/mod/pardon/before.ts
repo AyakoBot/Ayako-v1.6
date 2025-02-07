@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { log, pardon } from './one.js';
 
 export default async (

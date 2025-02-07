@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { Colors } from '../../../../Typings/Typings.js';
 
 export default async (msg: Discord.Message<boolean>) => {

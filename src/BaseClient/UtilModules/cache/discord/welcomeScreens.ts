@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Interface for managing Welcome Screens cache.

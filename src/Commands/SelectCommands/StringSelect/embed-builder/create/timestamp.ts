@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.StringSelectMenuInteraction, args: string[]) => {
  const language = await cmd.client.util.getLanguage(cmd.guildId);

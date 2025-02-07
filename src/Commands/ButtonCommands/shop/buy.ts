@@ -1,5 +1,4 @@
 import Prisma from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 
 export default async (cmd: Discord.ButtonInteraction, args: string[]) => {
@@ -39,7 +38,7 @@ export default async (cmd: Discord.ButtonInteraction, args: string[]) => {
 };
 
 const buy = async (
- cmd: Discord.ButtonInteraction<'cached'>,
+ cmd: APIMessageComponentButtonInteraction,
  settings: Prisma.shop,
  shopitem: Prisma.shopitems,
  language: CT.Language,
@@ -93,7 +92,7 @@ const buy = async (
 };
 
 const equip = async (
- cmd: Discord.ButtonInteraction<'cached'>,
+ cmd: APIMessageComponentButtonInteraction,
  shopitem: Prisma.shopitems,
  language: CT.Language,
 ) => {

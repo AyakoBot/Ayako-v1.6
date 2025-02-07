@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { getButton, getGiveawayEmbed } from './end.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

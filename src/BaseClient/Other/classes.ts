@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import * as RawData from 'discord.js/typings/rawDataTypes.js';
 

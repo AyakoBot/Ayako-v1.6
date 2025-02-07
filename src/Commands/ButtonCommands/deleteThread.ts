@@ -1,6 +1,5 @@
-import * as Discord from 'discord.js';
 
-export default async (cmd: Discord.ButtonInteraction<'cached'>, args: string[]) => {
+export default async (cmd: APIMessageComponentButtonInteraction, args: string[]) => {
  if (!cmd.channel) return;
  if (args[0] && args[0] !== cmd.user.id) return;
 

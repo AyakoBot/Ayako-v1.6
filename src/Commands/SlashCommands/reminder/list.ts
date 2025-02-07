@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 const isSnowflake = (id: string) => /^\d{17,19}$/.test(id);
 

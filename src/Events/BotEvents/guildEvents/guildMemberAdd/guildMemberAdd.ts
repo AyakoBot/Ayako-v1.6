@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import antiraid from './antiraid.js';
 import autoRoles from './autoroles.js';
 import checkMuted from './checkMuted.js';

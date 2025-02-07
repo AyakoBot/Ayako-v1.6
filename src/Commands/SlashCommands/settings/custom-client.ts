@@ -1,5 +1,4 @@
 import { API, type RESTPostAPIChatInputApplicationCommandsJSONBody } from '@discordjs/core';
-import * as Discord from 'discord.js';
 import client from '../../../BaseClient/Bot/Client.js';
 import Lang from '../../../BaseClient/Other/language.js';
 import requestHandler from '../../../BaseClient/UtilModules/requestHandler.js';

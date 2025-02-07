@@ -1,7 +1,6 @@
-import * as Discord from 'discord.js';
 
 export default async (
- cmd: Discord.ChatInputCommandInteraction<'cached'>,
+ cmd: APIChatInputApplicationCommandGuildInteraction,
  _args: string[],
  type: 'name' | 'desc' = 'desc',
 ) => {

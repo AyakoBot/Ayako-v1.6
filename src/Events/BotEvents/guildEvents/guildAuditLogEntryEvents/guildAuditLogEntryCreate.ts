@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import guildMemberPrune from '../guildMemberPrune/guildMemberPrune.js';
 import cache from './cache.js';
 

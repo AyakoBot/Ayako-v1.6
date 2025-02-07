@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import getStrike from '../../../BaseClient/UtilModules/mod/getStrike.js';
 import * as CT from '../../../Typings/Typings.js';
 import { isBlocked } from './ban.js';

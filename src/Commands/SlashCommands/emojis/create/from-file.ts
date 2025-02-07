@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import Emojis from '../../../../BaseClient/Other/Emojis.js';
 
 export default async (

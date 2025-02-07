@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as getChannel from './getChannel.js';
 import { request } from './requestHandler.js';
 

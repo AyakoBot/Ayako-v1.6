@@ -1,6 +1,5 @@
 import Prisma, { StoredPunishmentTypes } from '@prisma/client';
 import { BaseMessage } from 'discord-hybrid-sharding';
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import client from '../../../../BaseClient/Bot/Client.js';
 import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromError.js';

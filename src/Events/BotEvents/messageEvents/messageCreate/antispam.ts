@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import { performPunishment } from './antivirus.js';
 import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromError.js';

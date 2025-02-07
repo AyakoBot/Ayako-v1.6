@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { guild as getBotIdFromGuild } from './getBotIdFrom.js';
 
 /**

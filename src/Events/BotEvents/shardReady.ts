@@ -1,5 +1,4 @@
 import * as Sharding from 'discord-hybrid-sharding';
-import * as Discord from 'discord.js';
 import client from '../../BaseClient/Bot/Client.js';
 
 export default async (id: number, unavailableGuilds?: Set<string>) => {

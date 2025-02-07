@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import error from '../../error.js';
 
 import { Guild } from '../../../Other/classes.js';

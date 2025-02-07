@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default async (cmd: Discord.ButtonInteraction, args: string[]) => {

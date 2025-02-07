@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../Typings/Typings.js';
 import constants from '../Other/constants.js';
 import objectEmotes from './emotes.js';

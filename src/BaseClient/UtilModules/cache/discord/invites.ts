@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Represents a cache for Discord invites.

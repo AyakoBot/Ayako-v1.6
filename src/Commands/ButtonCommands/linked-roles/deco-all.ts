@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../Typings/Typings.js';
 import { AllNonThreadGuildChannelTypes } from '../../../Typings/Channel.js';
 import { canEditPermissionOverwrite } from '../../../BaseClient/UtilModules/requestHandler/channels/editPermissionOverwrite.js';

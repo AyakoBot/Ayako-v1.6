@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Requests the channel statuses of all voice channels of a guild.

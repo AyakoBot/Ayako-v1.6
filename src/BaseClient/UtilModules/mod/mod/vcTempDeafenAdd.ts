@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { scheduleJob } from 'node-schedule';
 import * as CT from '../../../../Typings/Typings.js';
 

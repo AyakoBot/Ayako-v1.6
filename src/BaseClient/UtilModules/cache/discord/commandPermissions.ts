@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Interface for managing command permissions for a Discord guild.

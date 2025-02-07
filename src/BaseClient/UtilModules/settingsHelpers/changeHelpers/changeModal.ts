@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import ms from 'ms';
 import * as CT from '../../../../Typings/Typings.js';
 import { getWithUTS } from '../buttonParsers/back.js';

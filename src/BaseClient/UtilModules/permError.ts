@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../Typings/Typings.js';
 import bitUniques from './bitUniques.js';
 import replyMsg from './replyMsg.js';
@@ -17,8 +16,8 @@ import getBotMemberFromGuild from './getBotMemberFromGuild.js';
 export default async (
  msg:
   | Discord.Message
-  | Discord.ButtonInteraction<'cached'>
-  | Discord.ChatInputCommandInteraction<'cached'>,
+  | APIMessageComponentButtonInteraction
+  | APIChatInputApplicationCommandGuildInteraction,
  bits: bigint | number,
  me?: boolean,
  update: boolean = true,

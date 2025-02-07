@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import shopCmd from '../../../SlashCommands/shop.js';
 
 export default async (cmd: Discord.StringSelectMenuInteraction) => {

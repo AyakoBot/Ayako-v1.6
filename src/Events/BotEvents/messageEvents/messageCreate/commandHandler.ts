@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { glob } from 'glob';
 import * as Jobs from 'node-schedule';
 import * as stringSimilarity from 'string-similarity';

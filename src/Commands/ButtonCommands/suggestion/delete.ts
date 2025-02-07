@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 export default async (cmd: Discord.ButtonInteraction) => {
  if (!cmd.inCachedGuild()) return;
@@ -13,7 +12,7 @@ export default async (cmd: Discord.ButtonInteraction) => {
  cmd.client.util.DataBase.suggestionvotes.delete({ where: { msgid: cmd.message.id } }).then();
 };
 
-const isValid = async (cmd: Discord.ButtonInteraction<'cached'>) => {
+const isValid = async (cmd: APIMessageComponentButtonInteraction) => {
  const language = await cmd.client.util.getLanguage(cmd.guildId);
  const lan = language.slashCommands.suggest;
 

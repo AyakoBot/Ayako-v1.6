@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { canCreateRole } from '../../../BaseClient/UtilModules/requestHandler/guilds/createRole.js';
 import { canEditRole } from '../../../BaseClient/UtilModules/requestHandler/guilds/editRole.js';
 

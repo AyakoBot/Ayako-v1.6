@@ -1,5 +1,4 @@
 import Prisma, { PunishmentType } from '@prisma/client';
-import * as Discord from 'discord.js';
 import client, { API } from '../../../../BaseClient/Bot/Client.js';
 import * as CT from '../../../../Typings/Typings.js';
 

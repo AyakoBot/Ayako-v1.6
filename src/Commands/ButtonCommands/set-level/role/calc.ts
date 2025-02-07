@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { getEmbed } from '../../../SlashCommands/settings/leveling/set-level-role.js';
 import {
  getLevelComponents,

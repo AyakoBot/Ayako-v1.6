@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Returns the appropriate Discord button style based on the provided setting.

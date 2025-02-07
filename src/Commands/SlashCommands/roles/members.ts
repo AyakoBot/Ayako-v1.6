@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import members from '../../ButtonCommands/info/members.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

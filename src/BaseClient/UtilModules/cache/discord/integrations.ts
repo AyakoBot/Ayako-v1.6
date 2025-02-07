@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Represents a collection of integrations for a guild.

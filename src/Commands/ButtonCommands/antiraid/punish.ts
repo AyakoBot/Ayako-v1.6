@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import * as CT from '../../../Typings/Typings.js';
 
@@ -38,7 +37,7 @@ export const runPunishment = async (
  idArray: string[],
  type: 'ban' | 'kick',
  guild: Discord.Guild,
- cmd?: Discord.ButtonInteraction<'cached'>,
+ cmd?: APIMessageComponentButtonInteraction,
 ) => {
  const self = (await guild.client.util.getBotMemberFromGuild(guild)) ?? guild.members.me;
  if (!self) {

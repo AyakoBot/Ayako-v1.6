@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../../../Typings/Typings.js';
 import client from '../../../../BaseClient/Bot/Client.js';
 import { getAPIRule } from '../../../ButtonCommands/settings/autoModRule/boolean.js';

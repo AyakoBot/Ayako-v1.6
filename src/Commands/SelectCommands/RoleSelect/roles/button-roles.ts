@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { findField, getComponents } from '../../StringSelect/roles/button-roles.js';
 
 export default async (

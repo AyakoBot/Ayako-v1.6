@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import client from '../../BaseClient/Bot/Client.js';
 import metricsCollector from '../../BaseClient/Bot/Metrics.js';
 

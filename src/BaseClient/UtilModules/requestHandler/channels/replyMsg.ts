@@ -1,5 +1,4 @@
 import * as DiscordCore from '@discordjs/core';
-import * as Discord from 'discord.js';
 
 import sendMessage from './sendMessage.js';
 

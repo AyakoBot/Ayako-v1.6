@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 
 /**
  * Interface for managing pinned messages in a Discord guild text-based channel.

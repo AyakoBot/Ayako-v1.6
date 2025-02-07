@@ -1,5 +1,4 @@
 import Prisma, { type votes } from '@prisma/client';
-import * as Discord from 'discord.js';
 import * as Jobs from 'node-schedule';
 import getPathFromError from '../../../BaseClient/UtilModules/getPathFromError.js';
 import * as CT from '../../../Typings/Typings.js';

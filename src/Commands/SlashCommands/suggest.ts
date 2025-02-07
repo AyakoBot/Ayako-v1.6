@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import { colors } from '../../BaseClient/UtilModules/getColor.js';
 
 export default async (cmd: Discord.ChatInputCommandInteraction) => {

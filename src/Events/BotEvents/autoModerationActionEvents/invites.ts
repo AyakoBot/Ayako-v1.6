@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as Classes from '../../../BaseClient/Other/classes.js';
 import invites from '../messageEvents/messageCreate/invites.js';
 

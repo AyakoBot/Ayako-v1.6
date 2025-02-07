@@ -1,5 +1,4 @@
 import { StoredPunishmentTypes } from '@prisma/client';
-import * as Discord from 'discord.js';
 
 export default async (ban: Discord.GuildBan) => {
  ban.client.util.cache.bans.delete(ban.user.id, ban.guild.id);

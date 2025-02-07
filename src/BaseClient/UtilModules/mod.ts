@@ -1,4 +1,3 @@
-import * as Discord from 'discord.js';
 import * as CT from '../../Typings/Typings.js';
 
 import cache from './cache.js';
@@ -14,7 +13,7 @@ import notifyTarget from './mod/notifyTarget.js';
 import startLoading from './mod/startLoading.js';
 
 export type CmdType =
- | Discord.ChatInputCommandInteraction<'cached'>
+ | APIChatInputApplicationCommandGuildInteraction
  | Discord.Message<true>
  | undefined;
 export type ResponseMessage = Discord.InteractionResponse<true> | Discord.Message<true> | undefined;
