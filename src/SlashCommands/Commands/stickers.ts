@@ -1,51 +1,62 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandAttachmentOption,
+ SlashCommandBuilder,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandSubcommandGroupBuilder,
+} from '@discordjs/builders';
+import {
+ ApplicationIntegrationType,
+ InteractionContextType,
+ PermissionFlagsBits,
+} from 'discord-api-types/v10';
 
-const StickerName = new Discord.SlashCommandStringOption()
+const StickerName = new SlashCommandStringOption()
  .setName('name')
  .setDescription('The Name of the Sticker')
  .setMaxLength(30)
  .setMinLength(2)
  .setRequired(true);
 
-const StickerDescription = new Discord.SlashCommandStringOption()
+const StickerDescription = new SlashCommandStringOption()
  .setName('description')
  .setDescription('The Description of the Sticker')
  .setRequired(true)
  .setMaxLength(100);
 
-const RelatedEmoji = new Discord.SlashCommandStringOption()
+const RelatedEmoji = new SlashCommandStringOption()
  .setName('emoji')
  .setDescription('The related Emoji')
  .setRequired(true)
  .setAutocomplete(true);
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('stickers')
  .setDescription('Detailed Information and Utilities about Sticker')
- .setDefaultMemberPermissions(Discord.PermissionFlagsBits.ManageGuild)
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('info')
    .setDescription('Information about many Stickers of the Server, or a specific Sticker')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('sticker')
      .setDescription('A Message Link to the Sticker you want info about (can also be a Sticker ID)')
      .setRequired(false),
    ),
  )
  .addSubcommandGroup(
-  new Discord.SlashCommandSubcommandGroupBuilder()
+  new SlashCommandSubcommandGroupBuilder()
    .setName('create')
    .setDescription('Create a new Sticker')
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('from-message')
      .setDescription('Create a Sticker from Message Link')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('link')
        .setDescription('The Message Link to create the Sticker from')
        .setRequired(true),
@@ -54,7 +65,7 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(StickerDescription)
      .addStringOption(RelatedEmoji)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setDescription('The Name of the Sticker to clone (if the Message it has multiple Stickers)')
        .setName('sticker-name')
        .setAutocomplete(true)
@@ -63,11 +74,11 @@ export default new Discord.SlashCommandBuilder()
      ),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('from-file')
      .setDescription('Create a Sticker from a File')
      .addAttachmentOption(
-      new Discord.SlashCommandAttachmentOption()
+      new SlashCommandAttachmentOption()
        .setName('file')
        .setDescription('The File to create the Sticker from')
        .setRequired(true),
@@ -78,11 +89,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('delete')
    .setDescription('Delete an Sticker')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('sticker')
      .setDescription('The Sticker to delete')
      .setRequired(true)
@@ -90,15 +101,15 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommandGroup(
-  new Discord.SlashCommandSubcommandGroupBuilder()
+  new SlashCommandSubcommandGroupBuilder()
    .setName('edit')
    .setDescription('Edit a Sticker')
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('name')
      .setDescription('Edit a Sticker')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('sticker')
        .setDescription('The Sticker to edit')
        .setAutocomplete(true)
@@ -107,11 +118,11 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(StickerName),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('description')
      .setDescription('Edit the Description of the Sticker')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('sticker')
        .setDescription('The Sticker to edit')
        .setAutocomplete(true)
@@ -120,11 +131,11 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(StickerDescription),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('emoji')
      .setDescription('Edit the Emoji of the Sticker')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('sticker')
        .setDescription('The Sticker to edit')
        .setAutocomplete(true)

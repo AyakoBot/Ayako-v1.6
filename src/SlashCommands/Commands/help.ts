@@ -1,16 +1,21 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+} from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('help')
  .setDescription('Get Help for the Bot')
- .setContexts([Discord.InteractionContextType.BotDM, Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setContexts([InteractionContextType.BotDM, InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('list')
    .setDescription('See a list of all Commands and Categories')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('type')
      .setDescription('The Category to list Commands for')
      .setRequired(false)
@@ -32,11 +37,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('command')
    .setDescription('See Help for a specific Command')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('command')
      .setDescription('The Command to see Help for')
      .setRequired(true)
@@ -44,57 +49,47 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('moderation')
    .setDescription('Help for the Moderation Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('info')
-   .setDescription('Help for the Info Commands'),
+  new SlashCommandSubcommandBuilder().setName('info').setDescription('Help for the Info Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('utility')
    .setDescription('Help for the Utility Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('leveling')
    .setDescription('Help for the Leveling Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('nitro')
    .setDescription('Help for the Nitro Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('vote')
-   .setDescription('Help for the Vote Commands'),
+  new SlashCommandSubcommandBuilder().setName('vote').setDescription('Help for the Vote Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('roles')
-   .setDescription('Help for the Role Commands'),
+  new SlashCommandSubcommandBuilder().setName('roles').setDescription('Help for the Role Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('channels')
    .setDescription('Help for the Channel Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('shop')
-   .setDescription('Help for the Shop Commands'),
+  new SlashCommandSubcommandBuilder().setName('shop').setDescription('Help for the Shop Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('automation')
    .setDescription('Help for the Automation Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('fun')
-   .setDescription('Help for the Fun Commands'),
+  new SlashCommandSubcommandBuilder().setName('fun').setDescription('Help for the Fun Commands'),
  );

@@ -1,12 +1,13 @@
-import * as Discord from 'discord.js';
+import { SlashCommandBuilder, SlashCommandStringOption } from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('self-roles')
  .setDescription('Get yourself some Self-Assignable Roles')
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addStringOption(
-  new Discord.SlashCommandStringOption()
+  new SlashCommandStringOption()
    .setName('category')
    .setDescription('The Category of Self-Roles you want to see')
    .setRequired(true)

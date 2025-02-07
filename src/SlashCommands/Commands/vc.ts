@@ -1,7 +1,4 @@
 import {
- ApplicationIntegrationType,
- ChannelType,
- InteractionContextType,
  SlashCommandBooleanOption,
  SlashCommandBuilder,
  SlashCommandChannelOption,
@@ -10,8 +7,13 @@ import {
  SlashCommandSubcommandBuilder,
  SlashCommandSubcommandGroupBuilder,
  SlashCommandUserOption,
+} from '@discordjs/builders';
+import {
+ ApplicationIntegrationType,
+ ChannelType,
+ InteractionContextType,
  VideoQualityMode,
-} from 'discord.js';
+} from 'discord-api-types/v10';
 
 const VoiceChannel = new SlashCommandChannelOption()
  .setName('channel')

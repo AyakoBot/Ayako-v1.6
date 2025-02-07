@@ -1,29 +1,35 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandUserOption,
+} from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-const User = new Discord.SlashCommandUserOption()
+const User = new SlashCommandUserOption()
  .setName('user')
  .setDescription('The User')
  .setRequired(false);
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('user')
  .setDescription('Get Information about a User')
  .setContexts([
-  Discord.InteractionContextType.BotDM,
-  Discord.InteractionContextType.Guild,
-  Discord.InteractionContextType.PrivateChannel,
+  InteractionContextType.BotDM,
+  InteractionContextType.Guild,
+  InteractionContextType.PrivateChannel,
  ])
  .setIntegrationTypes([
-  Discord.ApplicationIntegrationType.GuildInstall,
-  Discord.ApplicationIntegrationType.UserInstall,
+  ApplicationIntegrationType.GuildInstall,
+  ApplicationIntegrationType.UserInstall,
  ])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('info')
    .setDescription('Get Information about a User')
    .addUserOption(User)
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('user-name')
      .setDescription(
       `Username of the User (Searches across all of ${process.env.mainName}'s Servers)`,
@@ -34,13 +40,13 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('avatar')
    .setDescription('Get the Avatar of a User')
    .addUserOption(User),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('banner')
    .setDescription('Get the Banner of a User')
    .addUserOption(User),

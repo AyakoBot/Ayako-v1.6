@@ -1,20 +1,26 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandSubcommandGroupBuilder,
+} from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('embed-builder')
  .setDescription('Everything around Embeds and custom Embeds')
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addSubcommandGroup(
-  new Discord.SlashCommandSubcommandGroupBuilder()
+  new SlashCommandSubcommandGroupBuilder()
    .setName('view')
    .setDescription('View raw Embed Code')
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('custom-embeds')
      .setDescription('View raw Embed Code of your previously saved custom Embeds')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('embed')
        .setDescription('Your saved custom Embeds')
        .setRequired(true)
@@ -22,11 +28,11 @@ export default new Discord.SlashCommandBuilder()
      ),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('from-message')
      .setDescription(`View the raw Embed Code of any Message`)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('message-link')
        .setDescription('The Message Link of the Embeds you want to display')
        .setRequired(true),
@@ -34,7 +40,5 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('create')
-   .setDescription('Create a new custom Embed'),
+  new SlashCommandSubcommandBuilder().setName('create').setDescription('Create a new custom Embed'),
  );

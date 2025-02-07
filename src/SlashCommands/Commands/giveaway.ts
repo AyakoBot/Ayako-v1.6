@@ -1,30 +1,44 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBooleanOption,
+ SlashCommandBuilder,
+ SlashCommandChannelOption,
+ SlashCommandIntegerOption,
+ SlashCommandRoleOption,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandUserOption,
+} from '@discordjs/builders';
+import {
+ ApplicationIntegrationType,
+ InteractionContextType,
+ PermissionFlagsBits,
+} from 'discord-api-types/v10.js';
 import { GuildTextChannelTypes } from '../../Typings/Channel.js';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('giveaway')
  .setDescription('Giveaway Management Commands')
- .setDefaultMemberPermissions(Discord.PermissionFlagsBits.ManageGuild)
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('create')
    .setDescription('Create a Giveaway')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('prize-description')
      .setDescription('The Prize of the Giveaway')
      .setRequired(true),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('time')
      .setDescription('The Time of the Giveaway (1d 2h 5m)')
      .setRequired(true),
    )
    .addIntegerOption(
-    new Discord.SlashCommandIntegerOption()
+    new SlashCommandIntegerOption()
      .setName('winners')
      .setDescription('The Amount of Winners')
      .setMinValue(1)
@@ -32,38 +46,38 @@ export default new Discord.SlashCommandBuilder()
      .setRequired(true),
    )
    .addChannelOption(
-    new Discord.SlashCommandChannelOption()
+    new SlashCommandChannelOption()
      .setName('channel')
      .setDescription('The Channel where the Giveaway should be created')
      .setRequired(false)
      .addChannelTypes(...GuildTextChannelTypes),
    )
    .addRoleOption(
-    new Discord.SlashCommandRoleOption()
+    new SlashCommandRoleOption()
      .setName('role')
      .setDescription('The Role that is required to enter the Giveaway')
      .setRequired(false),
    )
    .addUserOption(
-    new Discord.SlashCommandUserOption()
+    new SlashCommandUserOption()
      .setName('host')
      .setDescription('The Host of the Giveaway')
      .setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('prize')
      .setDescription("The Prize of the Giveaway (will be DM'd to the Winner(s) if set)")
      .setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('claiming-timeout')
      .setDescription('The Time during which the Winners can claim their Prize (1d 2h 5m)')
      .setRequired(false),
    )
    .addBooleanOption(
-    new Discord.SlashCommandBooleanOption()
+    new SlashCommandBooleanOption()
      .setName('claim-fail-reroll')
      .setDescription(
       'Whether the Giveaway should be rerolled if a Winner fails to claim their Prize',
@@ -72,11 +86,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('end')
    .setDescription('End a Giveaway prematurely')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('message-id')
      .setDescription('The Message ID of the Giveaway')
      .setAutocomplete(true)
@@ -84,11 +98,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('reroll')
    .setDescription('Reroll a Giveaway (Please default to the Reroll Button if possible)')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('message-id')
      .setDescription('The Message ID of the Giveaway')
      .setAutocomplete(true)
@@ -96,33 +110,33 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder().setName('list').setDescription('List all Giveaways'),
+  new SlashCommandSubcommandBuilder().setName('list').setDescription('List all Giveaways'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('edit')
    .setDescription('Edit a Giveaway')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('message-id')
      .setDescription('The Message ID of the Giveaway')
      .setAutocomplete(true)
      .setRequired(true),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('prize-description')
      .setDescription('The Prize of the Giveaway')
      .setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('time')
      .setDescription('The Time of the Giveaway (1d 2h 5m)')
      .setRequired(false),
    )
    .addIntegerOption(
-    new Discord.SlashCommandIntegerOption()
+    new SlashCommandIntegerOption()
      .setName('winners')
      .setDescription('The Amount of Winners')
      .setMinValue(1)
@@ -130,31 +144,31 @@ export default new Discord.SlashCommandBuilder()
      .setRequired(false),
    )
    .addRoleOption(
-    new Discord.SlashCommandRoleOption()
+    new SlashCommandRoleOption()
      .setName('role')
      .setDescription('The Role that is required to enter the Giveaway')
      .setRequired(false),
    )
    .addUserOption(
-    new Discord.SlashCommandUserOption()
+    new SlashCommandUserOption()
      .setName('host')
      .setDescription('The Host of the Giveaway')
      .setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('prize')
      .setDescription('The Prize of the Giveaway (Winners will be able to claim it if set)')
      .setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('claiming-timeout')
      .setDescription('The Time during which the Winners can claim their Prize (1d 2h 5m)')
      .setRequired(false),
    )
    .addBooleanOption(
-    new Discord.SlashCommandBooleanOption()
+    new SlashCommandBooleanOption()
      .setName('claim-fail-reroll')
      .setDescription(
       'Whether the Giveaway should be rerolled if a Winner fails to claim their Prize',
@@ -163,11 +177,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('cancel')
    .setDescription('Cancel a Giveaway')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('message-id')
      .setDescription('The Message ID of the Giveaway')
      .setAutocomplete(true)

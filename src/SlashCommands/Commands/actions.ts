@@ -1,7 +1,18 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandUserOption,
+ type ToAPIApplicationCommandOptions,
+} from '@discordjs/builders';
+import {
+ ApplicationCommandOptionType,
+ ApplicationIntegrationType,
+ InteractionContextType,
+} from 'discord-api-types/v10.js';
 import interactions from '../../BaseClient/Other/constants/interactions.js';
-import { getRegisterCommands } from '../../Commands/ButtonCommands/rp/toggle.js';
 import getChunks from '../../BaseClient/UtilModules/getChunks.js';
+import { getRegisterCommands } from '../../Commands/ButtonCommands/rp/toggle.js';
 
 const commands = getRegisterCommands(interactions);
 const commandChunks = getChunks(commands, 25);
@@ -9,36 +20,33 @@ const commandChunks = getChunks(commands, 25);
 const actions = new Array(commandChunks.length)
  .fill(null)
  .map((_, i) =>
-  new Discord.SlashCommandBuilder()
+  new SlashCommandBuilder()
    .setName(`actions-${i}`)
    .setDescription('RP-Actions')
-   .setContexts([
-    Discord.InteractionContextType.Guild,
-    Discord.InteractionContextType.PrivateChannel,
-   ])
-   .setIntegrationTypes([Discord.ApplicationIntegrationType.UserInstall]),
+   .setContexts([InteractionContextType.Guild, InteractionContextType.PrivateChannel])
+   .setIntegrationTypes([ApplicationIntegrationType.UserInstall]),
  );
 
 const setOptions = (
- subcommand: Discord.SlashCommandSubcommandBuilder,
- options: Discord.ToAPIApplicationCommandOptions[],
+ subcommand: SlashCommandSubcommandBuilder,
+ options: ToAPIApplicationCommandOptions[],
 ) => {
  options.forEach((opt) => {
   const o = opt.toJSON();
 
   switch (o.type) {
-   case Discord.ApplicationCommandOptionType.String:
+   case ApplicationCommandOptionType.String:
     subcommand.addStringOption(
-     new Discord.SlashCommandStringOption()
+     new SlashCommandStringOption()
       .setName(o.name)
       .setNameLocalizations(o.name_localizations ?? {})
       .setDescription(o.description)
       .setDescriptionLocalizations(o.description_localizations ?? {}),
     );
     break;
-   case Discord.ApplicationCommandOptionType.User:
+   case ApplicationCommandOptionType.User:
     subcommand.addUserOption(
-     new Discord.SlashCommandUserOption()
+     new SlashCommandUserOption()
       .setName(o.name)
       .setNameLocalizations(o.name_localizations ?? {})
       .setDescription(o.description)

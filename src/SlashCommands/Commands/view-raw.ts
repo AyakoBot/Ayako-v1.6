@@ -1,14 +1,19 @@
-import * as Discord from 'discord.js';
+import { ContextMenuCommandBuilder } from '@discordjs/builders';
+import {
+ ApplicationCommandType,
+ ApplicationIntegrationType,
+ InteractionContextType,
+} from 'discord-api-types/v10';
 
-export default new Discord.ContextMenuCommandBuilder()
+export default new ContextMenuCommandBuilder()
  .setName('View Raw')
- .setType(Discord.ApplicationCommandType.Message)
+ .setType(ApplicationCommandType.Message)
  .setContexts([
-  Discord.InteractionContextType.Guild,
-  Discord.InteractionContextType.BotDM,
-  Discord.InteractionContextType.PrivateChannel,
+  InteractionContextType.Guild,
+  InteractionContextType.BotDM,
+  InteractionContextType.PrivateChannel,
  ])
  .setIntegrationTypes([
-  Discord.ApplicationIntegrationType.GuildInstall,
-  Discord.ApplicationIntegrationType.UserInstall,
+  ApplicationIntegrationType.GuildInstall,
+  ApplicationIntegrationType.UserInstall,
  ]);

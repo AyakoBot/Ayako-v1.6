@@ -1,83 +1,98 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandChannelOption,
+ SlashCommandIntegerOption,
+ SlashCommandNumberOption,
+ SlashCommandStringOption,
+ SlashCommandSubcommandBuilder,
+ SlashCommandSubcommandGroupBuilder,
+ SlashCommandUserOption,
+} from '@discordjs/builders';
+import {
+ ApplicationIntegrationType,
+ ChannelType,
+ InteractionContextType,
+ PermissionFlagsBits,
+} from 'discord-api-types/v10.js';
 import { AllNonThreadGuildChannelTypes, GuildTextChannelTypes } from '../../Typings/Channel.js';
 
-const Target = new Discord.SlashCommandUserOption()
+const Target = new SlashCommandUserOption()
  .setName('target')
  .setDescription('The Target')
  .setRequired(true);
 
-const User = new Discord.SlashCommandUserOption()
+const User = new SlashCommandUserOption()
  .setName('user')
  .setDescription('The User')
  .setRequired(true);
 
-const Executor = new Discord.SlashCommandUserOption()
+const Executor = new SlashCommandUserOption()
  .setName('executor')
  .setDescription('The Executor')
  .setRequired(true);
 
-const Reason = new Discord.SlashCommandStringOption()
+const Reason = new SlashCommandStringOption()
  .setName('reason')
  .setDescription('The Reason')
  .setRequired(false);
 
-const Duration = new Discord.SlashCommandStringOption()
+const Duration = new SlashCommandStringOption()
  .setName('duration')
  .setDescription('The Duration (Example: 4d 30m 12s)')
  .setRequired(false);
 
-const RequiredDuration = new Discord.SlashCommandStringOption()
+const RequiredDuration = new SlashCommandStringOption()
  .setName(Duration.name)
  .setDescription(Duration.description)
  .setRequired(true);
 
-const DeleteMessageDuration = new Discord.SlashCommandStringOption()
+const DeleteMessageDuration = new SlashCommandStringOption()
  .setName('delete-message-duration')
  .setDescription('Since how long ago Messages of this User should be deleted (Example: 1d 2h 5m)')
  .setRequired(false);
 
-const Amount = new Discord.SlashCommandIntegerOption()
+const Amount = new SlashCommandIntegerOption()
  .setName('amount')
  .setDescription('The Amount of matching Messages to delete')
  .setMaxValue(500)
  .setMinValue(2)
  .setRequired(true);
 
-const FilterContent = new Discord.SlashCommandStringOption()
+const FilterContent = new SlashCommandStringOption()
  .setName('content')
  .setDescription('The Content (case-insensitive)')
  .setMinLength(1)
  .setRequired(true);
 
-const Channel = new Discord.SlashCommandChannelOption()
+const Channel = new SlashCommandChannelOption()
  .setName('channel')
  .setDescription('The Channel to delete Messages from')
  .setRequired(false)
  .addChannelTypes(
   ...([
-   Discord.ChannelType.AnnouncementThread,
-   Discord.ChannelType.PublicThread,
-   Discord.ChannelType.GuildAnnouncement,
-   Discord.ChannelType.PrivateThread,
-   Discord.ChannelType.GuildStageVoice,
-   Discord.ChannelType.GuildText,
-   Discord.ChannelType.GuildVoice,
+   ChannelType.AnnouncementThread,
+   ChannelType.PublicThread,
+   ChannelType.GuildAnnouncement,
+   ChannelType.PrivateThread,
+   ChannelType.GuildStageVoice,
+   ChannelType.GuildText,
+   ChannelType.GuildVoice,
   ] as const),
  );
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('mod')
  .setDescription('Moderation Commands')
- .setDefaultMemberPermissions(Discord.PermissionFlagsBits.ManageGuild)
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('permissions')
    .setDescription('Manage Appearance and Permissions of Moderation Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('tempmute')
    .setDescription('Temporarily Mutes a User')
    .addUserOption(User)
@@ -85,14 +100,14 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('unmute')
    .setDescription('Unmutes a User')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('ban')
    .setDescription('Bans a User')
    .addUserOption(User)
@@ -101,14 +116,14 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(DeleteMessageDuration),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('unban')
    .setDescription('Un-Bans a User')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('soft-ban')
    .setDescription('Soft-Bans a User (Bans and instantly Un-Bans them)')
    .addUserOption(User)
@@ -116,7 +131,7 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(DeleteMessageDuration),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('temp-ban')
    .setDescription('Temporarily Bans a User')
    .addUserOption(User)
@@ -125,12 +140,12 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(DeleteMessageDuration),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('channel-ban')
    .setDescription('Bans a User from a Channel')
    .addUserOption(User)
    .addChannelOption(
-    new Discord.SlashCommandChannelOption()
+    new SlashCommandChannelOption()
      .setName('channel')
      .setDescription('The Channel')
      .addChannelTypes(...AllNonThreadGuildChannelTypes)
@@ -140,12 +155,12 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('temp-channel-ban')
    .setDescription('Temporarily Bans a User from a Channel')
    .addUserOption(User)
    .addChannelOption(
-    new Discord.SlashCommandChannelOption()
+    new SlashCommandChannelOption()
      .setName('channel')
      .setDescription('The Channel')
      .addChannelTypes(...AllNonThreadGuildChannelTypes)
@@ -155,12 +170,12 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('channel-unban')
    .setDescription('Temporarily Bans a User from a Channel')
    .addUserOption(User)
    .addChannelOption(
-    new Discord.SlashCommandChannelOption()
+    new SlashCommandChannelOption()
      .setName('channel')
      .setDescription('The Channel')
      .addChannelTypes(...AllNonThreadGuildChannelTypes)
@@ -169,51 +184,51 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('kick')
    .setDescription('Kicks a User')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('warn')
    .setDescription('Warns a User')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('soft-warn')
    .setDescription("Soft-Warns a User (Doesn't save the Warn, only notifies the User)")
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('strike')
    .setDescription(`Strikes a User (Let's ${process.env.mainName} decide what Punishment to apply)`)
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('unafk')
    .setDescription("Force delete someone's AFK status")
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommandGroup(
-  new Discord.SlashCommandSubcommandGroupBuilder()
+  new SlashCommandSubcommandGroupBuilder()
    .setName('pardon')
    .setDescription('Pardon a Punishment from a User')
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('one')
      .setDescription('Pardon a specific Punishment from a User')
      .addUserOption(Target)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('type')
        .setDescription('The Type of the Punishment')
        .setRequired(true)
@@ -226,7 +241,7 @@ export default new Discord.SlashCommandBuilder()
        ),
      )
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('id')
        .setDescription('The ID of the Punishment to Pardon')
        .setRequired(true)
@@ -237,12 +252,12 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('before')
      .setDescription('Pardon all Punishment from a User before a specific Date')
      .addUserOption(Target)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('date')
        .setDescription('The Date (D/M/YY or DD/MM/YYYY)')
        .setMinLength(6)
@@ -252,12 +267,12 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('after')
      .setDescription('Pardon all Punishment from a User after a specific Date')
      .addUserOption(Target)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('date')
        .setDescription('The Date (D/M/YY or DD/MM/YYYY)')
        .setMinLength(6)
@@ -267,12 +282,12 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('between')
      .setDescription('Pardon all Punishment from a User between 2 specific Dates')
      .addUserOption(Target)
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('date-1')
        .setDescription('The first Date (D/M/YY or DD/MM/YYYY)')
        .setMinLength(6)
@@ -280,7 +295,7 @@ export default new Discord.SlashCommandBuilder()
        .setRequired(true),
      )
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('date-2')
        .setDescription('The second Date (D/M/YY or DD/MM/YYYY)')
        .setMinLength(6)
@@ -290,7 +305,7 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('by')
      .setDescription('Pardon all Punishment from a User executed by a specific User')
      .addUserOption(Executor)
@@ -298,14 +313,14 @@ export default new Discord.SlashCommandBuilder()
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('all-by')
      .setDescription('Pardon all Punishment executed by a specific User')
      .addUserOption(Executor)
      .addStringOption(Reason),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('all-on')
      .setDescription('Pardon all Punishment from a User')
      .addUserOption(Target)
@@ -313,17 +328,14 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('check')
    .setDescription('View all Punishments of a User')
    .addUserOption(
-    new Discord.SlashCommandUserOption()
-     .setName('user')
-     .setDescription('The User')
-     .setRequired(false),
+    new SlashCommandUserOption().setName('user').setDescription('The User').setRequired(false),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('user-name')
      .setDescription(
       `Username of the User (Searches across all of ${process.env.mainName}'s Servers)`,
@@ -334,11 +346,11 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('edit')
    .setDescription('Edit the Reason of a Punishment')
    .addStringOption(
-    new Discord.SlashCommandStringOption()
+    new SlashCommandStringOption()
      .setName('id')
      .setDescription('The ID of the Punishment')
      .setRequired(true)
@@ -346,25 +358,22 @@ export default new Discord.SlashCommandBuilder()
      .setMaxLength(8),
    )
    .addStringOption(
-    new Discord.SlashCommandStringOption()
-     .setName('reason')
-     .setDescription('The Reason')
-     .setRequired(true),
+    new SlashCommandStringOption().setName('reason').setDescription('The Reason').setRequired(true),
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('slowmode')
    .setDescription('Set the Slowmode of a Channel')
    .addChannelOption(
-    new Discord.SlashCommandChannelOption()
+    new SlashCommandChannelOption()
      .setName('channel')
      .setDescription('The Channel to set the Slowmode in')
      .setRequired(true)
      .addChannelTypes(...GuildTextChannelTypes),
    )
    .addNumberOption(
-    new Discord.SlashCommandNumberOption()
+    new SlashCommandNumberOption()
      .setName('time')
      .setDescription('The Slowmode in Seconds')
      .setRequired(true)
@@ -372,7 +381,7 @@ export default new Discord.SlashCommandBuilder()
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('vc-mute')
    .setDescription('Mute a User in a Voice Channel')
    .addUserOption(User)
@@ -380,7 +389,7 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('vc-deafen')
    .setDescription('Deafen a User in a Voice Channel')
    .addUserOption(User)
@@ -388,49 +397,46 @@ export default new Discord.SlashCommandBuilder()
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('vc-unmute')
    .setDescription('Unmute a User in a Voice Channel')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('vc-undeafen')
    .setDescription('Undeafen a User in a Voice Channel')
    .addUserOption(User)
    .addStringOption(Reason),
  )
  .addSubcommandGroup(
-  new Discord.SlashCommandSubcommandGroupBuilder()
+  new SlashCommandSubcommandGroupBuilder()
    .setName('clear')
    .setDescription('Clear the provided Amount of Messages from a Channel')
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('all')
      .setDescription('Clear Messages from a Channel')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('user')
      .setDescription('Clear Messages that are sent by a User')
      .addIntegerOption(Amount)
      .addUserOption(
-      new Discord.SlashCommandUserOption()
-       .setName('user')
-       .setDescription('The User')
-       .setRequired(true),
+      new SlashCommandUserOption().setName('user').setDescription('The User').setRequired(true),
      )
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('between')
      .setDescription('Clear Messages between 2 Messages')
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('first-message-url')
        .setDescription('The Message URL (or ID) of the first Message')
        .setRequired(true)
@@ -438,7 +444,7 @@ export default new Discord.SlashCommandBuilder()
        .setMaxLength(95),
      )
      .addStringOption(
-      new Discord.SlashCommandStringOption()
+      new SlashCommandStringOption()
        .setName('second-message-url')
        .setDescription(
         'The Message URL (or ID) of the second Message (if not provided, last sent Message will be used)',
@@ -450,7 +456,7 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('match')
      .setDescription('Clear Messages that match the provided Content')
      .addIntegerOption(Amount)
@@ -458,7 +464,7 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('not-match')
      .setDescription("Clear Messages that don't match the provided Content")
      .addIntegerOption(Amount)
@@ -466,7 +472,7 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('starts-with')
      .setDescription('Clear Messages that start with the provided Content')
      .addIntegerOption(Amount)
@@ -474,7 +480,7 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('ends-with')
      .setDescription('Clear Messages that end with the provided Content')
      .addIntegerOption(Amount)
@@ -482,7 +488,7 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('includes')
      .setDescription('Clear Messages that include the provided Content')
      .addIntegerOption(Amount)
@@ -490,84 +496,84 @@ export default new Discord.SlashCommandBuilder()
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('links')
      .setDescription('Clear Messages that have Links')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('invites')
      .setDescription('Clear Messages that have Invites')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('images')
      .setDescription('Clear Messages that have Images')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('videos')
      .setDescription('Clear Messages that have Videos')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('files')
      .setDescription('Clear Messages that have any type of Files')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('audio')
      .setDescription('Clear Messages that have Audio')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('mentions')
      .setDescription('Clear Messages that mention anything')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('stickers')
      .setDescription('Clear Messages that have Stickers')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('embeds')
      .setDescription('Clear Messages that have Embeds')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('text')
      .setDescription('Clear Messages that have only Text')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('humans')
      .setDescription('Clear Messages that are sent by Humans')
      .addIntegerOption(Amount)
      .addChannelOption(Channel),
    )
    .addSubcommand(
-    new Discord.SlashCommandSubcommandBuilder()
+    new SlashCommandSubcommandBuilder()
      .setName('bots')
      .setDescription('Clear Messages that are sent by Bots')
      .addIntegerOption(Amount)

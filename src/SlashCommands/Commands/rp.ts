@@ -1,46 +1,43 @@
-import * as Discord from 'discord.js';
+import {
+ SlashCommandBuilder,
+ SlashCommandSubcommandBuilder,
+ SlashCommandUserOption,
+} from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('rp')
  .setDescription('Allows Admins to manage RP-Commands and Users to block others')
  .setContexts([
-  Discord.InteractionContextType.BotDM,
-  Discord.InteractionContextType.Guild,
-  Discord.InteractionContextType.PrivateChannel,
+  InteractionContextType.BotDM,
+  InteractionContextType.Guild,
+  InteractionContextType.PrivateChannel,
  ])
  .setIntegrationTypes([
-  Discord.ApplicationIntegrationType.GuildInstall,
-  Discord.ApplicationIntegrationType.UserInstall,
+  ApplicationIntegrationType.GuildInstall,
+  ApplicationIntegrationType.UserInstall,
  ])
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
-   .setName('manager')
-   .setDescription('Manage RP-Commands'),
+  new SlashCommandSubcommandBuilder().setName('manager').setDescription('Manage RP-Commands'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('blocked')
    .setDescription('See Users you currently have blocked'),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('block')
    .setDescription('Block a User from using RP-Commands on you')
    .addUserOption(
-    new Discord.SlashCommandUserOption()
-     .setName('user')
-     .setDescription('The User')
-     .setRequired(false),
+    new SlashCommandUserOption().setName('user').setDescription('The User').setRequired(false),
    ),
  )
  .addSubcommand(
-  new Discord.SlashCommandSubcommandBuilder()
+  new SlashCommandSubcommandBuilder()
    .setName('unblock')
    .setDescription('Unblock a User from using RP-Commands on you')
    .addUserOption(
-    new Discord.SlashCommandUserOption()
-     .setName('user')
-     .setDescription('The User')
-     .setRequired(true),
+    new SlashCommandUserOption().setName('user').setDescription('The User').setRequired(true),
    ),
  );

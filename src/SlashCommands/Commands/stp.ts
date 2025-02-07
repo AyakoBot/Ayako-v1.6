@@ -1,19 +1,20 @@
-import * as Discord from 'discord.js';
+import { SlashCommandBuilder, SlashCommandStringOption } from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('stp')
  .setDescription('String Replace Test')
  .setContexts([
-  Discord.InteractionContextType.BotDM,
-  Discord.InteractionContextType.Guild,
-  Discord.InteractionContextType.PrivateChannel,
+  InteractionContextType.BotDM,
+  InteractionContextType.Guild,
+  InteractionContextType.PrivateChannel,
  ])
  .setIntegrationTypes([
-  Discord.ApplicationIntegrationType.GuildInstall,
-  Discord.ApplicationIntegrationType.UserInstall,
+  ApplicationIntegrationType.GuildInstall,
+  ApplicationIntegrationType.UserInstall,
  ])
  .addStringOption(
-  new Discord.SlashCommandStringOption()
+  new SlashCommandStringOption()
    .setName('string')
    .setDescription('The String to replace')
    .setRequired(true),

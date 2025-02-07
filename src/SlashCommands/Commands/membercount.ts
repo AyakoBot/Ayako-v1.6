@@ -1,10 +1,11 @@
-import * as Discord from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('membercount')
  .setDescription('Display the Membercount of a Server')
- .setContexts([Discord.InteractionContextType.Guild])
+ .setContexts([InteractionContextType.Guild])
  .setIntegrationTypes([
-  Discord.ApplicationIntegrationType.GuildInstall,
-  Discord.ApplicationIntegrationType.UserInstall,
+  ApplicationIntegrationType.GuildInstall,
+  ApplicationIntegrationType.UserInstall,
  ]);

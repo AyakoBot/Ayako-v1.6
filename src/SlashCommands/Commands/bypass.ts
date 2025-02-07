@@ -1,13 +1,18 @@
-import * as Discord from 'discord.js';
+import { SlashCommandBuilder, SlashCommandUserOption } from '@discordjs/builders';
+import {
+ ApplicationIntegrationType,
+ InteractionContextType,
+ PermissionFlagsBits,
+} from 'discord-api-types/v10';
 
-export default new Discord.SlashCommandBuilder()
+export default new SlashCommandBuilder()
  .setName('bypass')
  .setDescription('Bypasses a Member from the Verification-System')
- .setDefaultMemberPermissions(Discord.PermissionFlagsBits.ManageGuild)
- .setContexts([Discord.InteractionContextType.Guild])
- .setIntegrationTypes([Discord.ApplicationIntegrationType.GuildInstall])
+ .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+ .setContexts([InteractionContextType.Guild])
+ .setIntegrationTypes([ApplicationIntegrationType.GuildInstall])
  .addUserOption(
-  new Discord.SlashCommandUserOption()
+  new SlashCommandUserOption()
    .setName('user')
    .setDescription('The User to bypass')
    .setRequired(true),

@@ -1,10 +1,9 @@
 import {
- ApplicationIntegrationType,
- InteractionContextType,
  SlashCommandBuilder,
  SlashCommandSubcommandBuilder,
  SlashCommandUserOption,
-} from 'discord.js';
+} from '@discordjs/builders';
+import { ApplicationIntegrationType, InteractionContextType } from 'discord-api-types/v10';
 
 export default new SlashCommandBuilder()
  .setName('event')
