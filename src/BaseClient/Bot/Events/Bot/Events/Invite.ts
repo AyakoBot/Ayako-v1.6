@@ -6,8 +6,8 @@ import {
  InviteType,
  type GatewayInviteCreateDispatchData,
  type GatewayInviteDeleteDispatchData,
-} from 'discord.js';
-import { cache as redis } from '../../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
+import { cache as redis } from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.InviteCreate]: (data: GatewayInviteCreateDispatchData) => {

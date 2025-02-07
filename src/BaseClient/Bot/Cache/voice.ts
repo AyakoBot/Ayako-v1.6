@@ -35,7 +35,11 @@ export default class VoiceCache extends Cache<APIVoiceState> {
   const rData = this.apiToR(data);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${data.guild_id}:${data.user_id}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${data.guild_id}:${data.user_id}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }

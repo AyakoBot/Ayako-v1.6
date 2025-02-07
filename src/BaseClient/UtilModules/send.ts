@@ -9,7 +9,7 @@ export interface MessageCreateOptions extends Omit<Discord.MessageCreateOptions,
 }
 
 async function send<T extends number | undefined>(
- channels: Discord.User,
+ channels: RUser,
  payload: CT.UsualMessagePayload,
  timeout?: T,
 ): Promise<T extends number ? Discord.Message : null | void>;
@@ -46,7 +46,7 @@ async function send(
   | Discord.TextBasedChannel[]
   | { id: string[]; guildId: string }
   | { id: string; guildId: string }
-  | Discord.User,
+  | RUser,
  payload: CT.UsualMessagePayload,
  timeout?: number,
 ): Promise<Discord.Message | (Discord.Message | null | void)[] | null | void> {
@@ -179,7 +179,7 @@ const combineMessages = async (
  */
 const getChannel = async (
  channels:
-  | Discord.User
+  | RUser
   | Discord.TextBasedChannel
   | {
      id: string;

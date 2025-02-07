@@ -40,7 +40,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
 
 export const isBlocked = async (
  cmd: APIChatInputApplicationCommandGuildInteraction | Discord.Message<true>,
- user: Discord.User,
+ user: RUser,
  member: Discord.GuildMember | null,
  type: CT.ModTypes,
  language: CT.Language,

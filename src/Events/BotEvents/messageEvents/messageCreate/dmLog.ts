@@ -96,7 +96,7 @@ export default async (msg: Discord.Message<boolean>) => {
  if ('message' in err) throw new Error(err.message);
 };
 
-const createDMLog = async (user: Discord.User, channel: Discord.GuildTextBasedChannel) => {
+const createDMLog = async (user: RUser, channel: Discord.GuildTextBasedChannel) => {
  const log = await channel.client.util.request.channels.createThread(
   channel as Discord.GuildTextBasedChannel,
   {

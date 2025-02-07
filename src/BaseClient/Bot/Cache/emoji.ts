@@ -30,7 +30,11 @@ export default class EmojiCache extends Cache<APIEmoji> {
   const rData = this.apiToR(data, guildId);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${rData.guild_id}:${data.id}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${rData.guild_id}:${data.id}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }

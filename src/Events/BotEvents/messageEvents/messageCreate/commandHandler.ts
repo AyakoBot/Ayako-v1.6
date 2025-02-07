@@ -213,7 +213,7 @@ export const checkCommandPermissions = async (
  message: {
   guildId: string;
   guild: Discord.Guild;
-  author: Discord.User;
+  author: RUser;
   channelId: string;
   member: Discord.GuildMember | null;
  },

@@ -9,7 +9,7 @@ export default async (
  cmd:
   | Discord.ChatInputCommandInteraction
   | Discord.MessageContextMenuCommandInteraction
-  | Discord.UserContextMenuCommandInteraction
+  | RUserContextMenuCommandInteraction
   | Discord.AnySelectMenuInteraction
   | Discord.ButtonInteraction
   | Discord.ModalSubmitInteraction,

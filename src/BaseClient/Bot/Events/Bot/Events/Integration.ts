@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
  GatewayDispatchEvents,
  type GatewayIntegrationCreateDispatchData,
  type GatewayIntegrationDeleteDispatchData,
  type GatewayIntegrationUpdateDispatchData,
-} from 'discord.js';
-import { cache as redis } from '../../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
+import { cache as redis } from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.IntegrationCreate]: (data: GatewayIntegrationCreateDispatchData) =>

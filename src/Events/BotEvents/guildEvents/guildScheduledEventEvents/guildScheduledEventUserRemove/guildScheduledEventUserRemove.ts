@@ -1,7 +1,7 @@
 import type * as Discord from 'discord.js';
 import log from './log.js';
 
-export default async (event: Discord.GuildScheduledEvent, user: Discord.User) => {
+export default async (event: Discord.GuildScheduledEvent, user: RUser) => {
  event.client.util.cache.scheduledEventUsers.remove(user, event.guildId, event.id);
 
  if (!event.guild) return;

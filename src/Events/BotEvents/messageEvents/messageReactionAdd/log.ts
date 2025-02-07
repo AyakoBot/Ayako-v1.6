@@ -3,7 +3,7 @@ import * as CT from '../../../../Typings/Typings.js';
 
 export default async (
  reaction: Discord.MessageReaction,
- user: Discord.User,
+ user: RUser,
  msg: Discord.Message,
 ) => {
  if (!msg.inGuild()) return;

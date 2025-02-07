@@ -39,7 +39,7 @@ export default async () => {
  );
 
  fetchedUsers
-  .filter((u): u is Discord.User => !!u)
+  .filter((u): u is RUser => !!u)
   .forEach((u) => {
    client.util.DataBase.users
     .upsert({

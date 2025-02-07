@@ -30,7 +30,11 @@ export default class SoundboardCache extends Cache<APISoundboardSound> {
   const rData = this.apiToR(data);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${rData.guild_id}:${data.sound_id}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${rData.guild_id}:${data.sound_id}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }

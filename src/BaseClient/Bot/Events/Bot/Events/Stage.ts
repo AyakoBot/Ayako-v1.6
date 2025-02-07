@@ -4,8 +4,8 @@ import {
  type GatewayStageInstanceCreateDispatchData,
  type GatewayStageInstanceDeleteDispatchData,
  type GatewayStageInstanceUpdateDispatchData,
-} from 'discord.js';
-import { cache as redis } from '../../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
+import { cache as redis } from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.StageInstanceCreate]: (data: GatewayStageInstanceCreateDispatchData) =>

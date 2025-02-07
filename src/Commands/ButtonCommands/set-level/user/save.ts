@@ -25,7 +25,7 @@ export default async (cmd: Discord.ButtonInteraction, args: string[]) => {
  cmd.update({ components: [], embeds: [getEmbed(language, user, newXP, newLevel)] });
 };
 
-const getEmbed = (language: CT.Language, u: Discord.User, newXP: number, newLevel: number) => ({
+const getEmbed = (language: CT.Language, u: RUser, newXP: number, newLevel: number) => ({
  author: {
   name: language.autotypes.leveling,
  },

@@ -19,7 +19,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
 
 export const respond = async (
  cmd: Discord.ChatInputCommandInteraction | Discord.StringSelectMenuInteraction,
- user: Discord.User | null,
+ user: RUser | null,
  blocked: { blockedcmd?: string[] },
  lang?: CT.Language,
 ) => {

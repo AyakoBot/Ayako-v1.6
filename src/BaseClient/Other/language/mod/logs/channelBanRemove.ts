@@ -1,10 +1,11 @@
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.mod.logs.channelBanRemove,
  description: (
-  target: Discord.User,
-  executor: Discord.User,
+  target: RUser,
+  executor: RUser,
   options: CT.ModOptions<CT.ModTypes.ChannelBanRemove>,
  ) =>
   t.stp(t.JSON.mod.logs.channelBanRemove.description, {

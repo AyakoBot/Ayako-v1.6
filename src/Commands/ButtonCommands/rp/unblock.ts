@@ -1,7 +1,7 @@
 
 export default async (cmd: Discord.ButtonInteraction | Discord.ChatInputCommandInteraction) => {
  const language = await cmd.client.util.getLanguage(cmd.guildId);
- let user: Discord.User | undefined;
+ let user: RUser | undefined;
 
  if (cmd instanceof Discord.ButtonInteraction) {
   const userId = new URL(cmd.message.embeds[0].url || 'https://ayakobot.com').searchParams.get(

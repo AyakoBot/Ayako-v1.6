@@ -10,9 +10,9 @@ import {
  type GatewayMessageReactionRemoveDispatchData,
  type GatewayMessageReactionRemoveEmojiDispatchData,
  type GatewayMessageUpdateDispatchData,
-} from 'discord.js';
-import { AllThreadGuildChannelTypes } from '../../../../Typings/Channel.js';
-import RedisClient, { cache as redis } from '../../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
+import { AllThreadGuildChannelTypes } from '../../../../../Typings/Channel.js';
+import RedisClient, { cache as redis } from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.MessageCreate]: async (data: GatewayMessageCreateDispatchData) => {

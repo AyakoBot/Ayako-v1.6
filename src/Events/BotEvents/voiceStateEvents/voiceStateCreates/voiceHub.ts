@@ -141,7 +141,7 @@ export const createVC = async (
 
 export const getPayload = async (
  language: Language,
- owner: Discord.User,
+ owner: RUser,
  channel: Discord.VoiceChannel | Discord.StageChannel,
 ) => {
  const lan = language.slashCommands.vc.helpEmbed;

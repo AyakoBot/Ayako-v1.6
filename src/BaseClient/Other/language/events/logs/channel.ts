@@ -1,117 +1,102 @@
+import type { RChannel, RMessage, RThread, RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.events.logs.channel,
- descCreateAudit: (
-  user: Discord.User,
-  channel: Discord.GuildChannel | Discord.AnyThreadChannel,
-  type: string,
- ) =>
+ descCreateAudit: (user: RUser, channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descCreateAudit, {
    user: t.languageFunction.getUser(user),
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descCreate: (channel: Discord.GuildChannel | Discord.AnyThreadChannel, type: string) =>
+ descCreate: (channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descCreate, {
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descDeleteAudit: (
-  user: Discord.User,
-  channel: Discord.GuildChannel | Discord.AnyThreadChannel,
-  type: string,
- ) =>
+ descDeleteAudit: (user: RUser, channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descDeleteAudit, {
    user: t.languageFunction.getUser(user),
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descDelete: (channel: Discord.GuildChannel | Discord.AnyThreadChannel, type: string) =>
+ descDelete: (channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descDelete, {
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descUpdateAudit: (
-  user: Discord.User,
-  channel: Discord.GuildChannel | Discord.AnyThreadChannel,
-  type: string,
- ) =>
+ descUpdateAudit: (user: RUser, channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descUpdateAudit, {
    user: t.languageFunction.getUser(user),
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descUpdate: (channel: Discord.GuildChannel | Discord.AnyThreadChannel, type: string) =>
+ descUpdate: (channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descUpdate, {
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descJoinMember: (thread: Discord.ThreadChannel, channelType: string) =>
+ descJoinMember: (thread: RThread) =>
   t.stp(t.JSON.events.logs.channel.descJoinMember, {
-   channel: t.languageFunction.getChannel(thread, channelType),
+   channel: t.languageFunction.getChannel(thread, t.JSON.channelTypes[thread.type]),
   }),
- descLeaveMember: (thread: Discord.ThreadChannel, channelType: string) =>
+ descLeaveMember: (thread: RThread, channelType: string) =>
   t.stp(t.JSON.events.logs.channel.descLeaveMember, {
    channel: t.languageFunction.getChannel(thread, channelType),
   }),
- descUpdateStageAudit: (channel: Discord.StageChannel, channelType: string, user: Discord.User) =>
+ descUpdateStageAudit: (channel: RChannel, user: RUser) =>
   t.stp(t.JSON.events.logs.channel.descUpdateStageAudit, {
    user: t.languageFunction.getUser(user),
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descUpdateStage: (channel: Discord.StageChannel, channelType: string) =>
+ descUpdateStage: (channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descUpdateStage, {
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descCreateStageAudit: (channel: Discord.StageChannel, channelType: string, user: Discord.User) =>
+ descCreateStageAudit: (channel: RChannel, user: RUser) =>
   t.stp(t.JSON.events.logs.channel.descCreateStageAudit, {
    user: t.languageFunction.getUser(user),
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descCreateStage: (channel: Discord.StageChannel, channelType: string) =>
+ descCreateStage: (channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descCreateStage, {
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descDeleteStageAudit: (channel: Discord.StageChannel, channelType: string, user: Discord.User) =>
+ descDeleteStageAudit: (channel: RChannel, user: RUser) =>
   t.stp(t.JSON.events.logs.channel.descDeleteStageAudit, {
    user: t.languageFunction.getUser(user),
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descDeleteStage: (channel: Discord.StageChannel, channelType: string) =>
+ descDeleteStage: (channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descDeleteStage, {
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descPinCreateAudit: (user: Discord.User, msg: Discord.Message, channelType: string) =>
+ descPinCreateAudit: (user: RUser, msg: RMessage, channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descPinCreateAudit, {
    user: t.languageFunction.getUser(user),
    msg: t.languageFunction.getMessage(msg),
-   channel: t.languageFunction.getChannel(msg.channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descPinCreate: (msg: Discord.Message, channelType: string) =>
+ descPinCreate: (msg: RMessage, channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descPinCreate, {
    msg: t.languageFunction.getMessage(msg),
-   channel: t.languageFunction.getChannel(msg.channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descPinRemoveAudit: (user: Discord.User, msg: Discord.Message, channelType: string) =>
+ descPinRemoveAudit: (user: RUser, msg: RMessage, channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descPinRemoveAudit, {
    user: t.languageFunction.getUser(user),
    msg: t.languageFunction.getMessage(msg),
-   channel: t.languageFunction.getChannel(msg.channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descPinRemove: (msg: Discord.Message, channelType: string) =>
+ descPinRemove: (msg: RMessage, channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descPinRemove, {
    msg: t.languageFunction.getMessage(msg),
-   channel: t.languageFunction.getChannel(msg.channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descTyping: (user: Discord.User, channel: Discord.GuildTextBasedChannel, channelType: string) =>
+ descTyping: (user: RUser, channel: RChannel) =>
   t.stp(t.JSON.events.logs.channel.descTyping, {
    user: t.languageFunction.getUser(user),
-   channel: t.languageFunction.getChannel(channel, channelType),
+   channel: t.languageFunction.getChannel(channel, t.JSON.channelTypes[channel.type]),
   }),
- descStatusUpdate: (channel: Discord.GuildChannel | Discord.AnyThreadChannel, type: string) =>
+ descStatusUpdate: (channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descDelete, {
    channel: t.languageFunction.getChannel(channel, type),
   }),
- descStatusUpdateAudit: (
-  user: Discord.User,
-  channel: Discord.GuildChannel | Discord.AnyThreadChannel,
-  type: string,
- ) =>
+ descStatusUpdateAudit: (user: RUser, channel: RChannel | RThread, type: string) =>
   t.stp(t.JSON.events.logs.channel.descStatusUpdateAudit, {
    user: t.languageFunction.getUser(user),
    channel: t.languageFunction.getChannel(channel, type),

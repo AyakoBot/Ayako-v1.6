@@ -150,6 +150,7 @@ export type BaseOptions = {
  skipChecks: boolean;
 };
 
+type Channel = { channel: RChannel };
 type Roles = { roles: RRole[] };
 type Temp = { duration: number };
 type Empty = NonNullable<unknown>;
@@ -163,9 +164,9 @@ type SpecificOpts = {
  [ModTypes.BanAdd]: DeleteMessageSeconds;
  [ModTypes.SoftBanAdd]: DeleteMessageSeconds;
  [ModTypes.TempBanAdd]: Temp & DeleteMessageSeconds;
- [ModTypes.ChannelBanAdd]: RChannel;
- [ModTypes.TempChannelBanAdd]: RChannel & Temp;
- [ModTypes.ChannelBanRemove]: RChannel;
+ [ModTypes.ChannelBanAdd]: Channel;
+ [ModTypes.TempChannelBanAdd]: Channel & Temp;
+ [ModTypes.ChannelBanRemove]: Channel;
  [ModTypes.BanRemove]: Empty;
  [ModTypes.KickAdd]: Empty;
  [ModTypes.WarnAdd]: Empty;

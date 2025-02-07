@@ -1,4 +1,4 @@
-import type { APIInvite } from 'discord-api-types/v10';
+import type { APIExtendedInvite, APIInvite } from 'discord-api-types/v10';
 import type Redis from 'ioredis';
 import Cache from './base.js';
 
@@ -12,6 +12,11 @@ export type RInvite = Omit<
  target_user_id: string | null;
  guild_scheduled_event_id: string | null;
  application_id: string | null;
+ uses: number | null;
+ max_uses: number | null;
+ max_age: number | null;
+ temporary: boolean | null;
+ created_at: string | null;
 };
 
 export const RInviteKeys = [
@@ -27,6 +32,11 @@ export const RInviteKeys = [
  'target_user_id',
  'guild_scheduled_event_id',
  'application_id',
+ 'uses',
+ 'max_uses',
+ 'max_age',
+ 'temporary',
+ 'created_at',
 ] as const;
 
 export default class InviteCache extends Cache<APIInvite> {
@@ -44,7 +54,11 @@ export default class InviteCache extends Cache<APIInvite> {
   const rData = this.apiToR(data);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${rData.guild_id}:${data.code}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${rData.guild_id}:${data.code}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }
@@ -59,7 +73,7 @@ export default class InviteCache extends Cache<APIInvite> {
    .then((keys) => (keys.length ? this.redis.del(keys) : 0));
  }
 
- apiToR(data: APIInvite) {
+ apiToR(data: APIInvite | APIExtendedInvite) {
   if (!data.guild) return false;
 
   const keysNotToCache = Object.keys(data).filter(
@@ -72,6 +86,11 @@ export default class InviteCache extends Cache<APIInvite> {
   rData.inviter_id = data.inviter?.id || null;
   rData.guild_scheduled_event_id = data.guild_scheduled_event?.id || null;
   rData.application_id = data.target_application?.id || null;
+  rData.uses = 'uses' in data && data.uses ? data.uses : null;
+  rData.max_uses = 'max_uses' in data && data.max_uses ? data.max_uses : null;
+  rData.max_age = 'max_age' in data && data.max_age ? data.max_age : null;
+  rData.temporary = 'temporary' in data && data.temporary ? data.temporary : null;
+  rData.created_at = 'created_at' in data && data.created_at ? data.created_at : null;
 
   keysNotToCache.forEach((k) => delete (rData as Record<string, unknown>)[k as string]);
 

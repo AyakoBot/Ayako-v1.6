@@ -78,7 +78,7 @@ const getDaysBetween2Days = (date1: number, date2: number) => {
 const getLongest = (
  { lan, language }: { lan: CT.Language['slashCommands']['leaderboard']; language: CT.Language },
  daysPerUser: { days: number; userId: string }[],
- users: (Discord.User | undefined)[],
+ users: (RUser | undefined)[],
 ) => {
  let longestDays = Math.max(...daysPerUser.map((l) => String(l.days).length));
  let longestUsername = Math.max(
@@ -126,7 +126,7 @@ const getEmbed = async (
   daysPerUser,
  }: { days: number; longestDays: number; daysPerUser: { days: number; userId: string }[] },
  { displayNames, longestUsername }: { displayNames: string[]; longestUsername: number },
- user: Discord.User,
+ user: RUser,
  guild: Discord.Guild,
 ): Promise<Discord.APIEmbed> => ({
  author: {

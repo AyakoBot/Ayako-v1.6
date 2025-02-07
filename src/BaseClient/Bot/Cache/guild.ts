@@ -12,6 +12,7 @@ export type RGuild = Omit<
  icon_url: string | null;
  discovery_splash_url: string | null;
  banner_url: string | null;
+ member_count: number;
 };
 
 export const RGuildKeys = [
@@ -55,6 +56,7 @@ export const RGuildKeys = [
  'premium_progress_bar_enabled',
  'hub_type',
  'safety_alerts_channel_id',
+ 'member_count',
 ] as const;
 
 export default class GuildCache extends Cache<APIGuild> {
@@ -84,7 +86,7 @@ export default class GuildCache extends Cache<APIGuild> {
   const rData = this.apiToR(data);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${data.id}`, JSON.stringify(rData));
+  await this.redis.setex(`${this.key()}:${data.id}`, this.ttl, JSON.stringify(rData));
 
   return true;
  }
@@ -95,6 +97,10 @@ export default class GuildCache extends Cache<APIGuild> {
 
  del(id: string): Promise<number> {
   return this.redis.del(`${this.key()}:${id}`);
+ }
+
+ _set(data: RGuild) {
+  return this.redis.setex(`${this.key()}`, this.ttl, JSON.stringify(data));
  }
 
  apiToR(data: APIGuild) {

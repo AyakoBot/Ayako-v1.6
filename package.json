@@ -18,6 +18,7 @@
     "@discordjs/core": "^2.0.1",
     "@discordjs/rest": "^2.4.2",
     "@discordjs/builders": "^1.10.0",
+    "@discordjs/ws": "^2.0.1",
     "@prisma/client": "^6.3.1",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/lodash": "^4.17.15",

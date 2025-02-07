@@ -57,14 +57,14 @@ export const log = async (
       {
        name: lan.target,
        value: language.languageFunction.getUser(
-        (await client.util.getUser(punishment.userid)) as Discord.User,
+        (await client.util.getUser(punishment.userid)) as RUser,
        ),
        inline: false,
       },
       {
        name: lan.executor,
        value: `${language.languageFunction.getUser(
-        (await client.util.getUser(punishment.executorid)) as Discord.User,
+        (await client.util.getUser(punishment.executorid)) as RUser,
        )} - ${lan.channel}: \`${punishment.channelname}\``,
        inline: false,
       },

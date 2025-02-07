@@ -1,13 +1,14 @@
+import type { RRole, RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.setLevel,
- descUser: (user: Discord.User) =>
+ descUser: (user: RUser) =>
   t.stp(t.JSON.slashCommands.setLevel.descUser, { user: t.languageFunction.getUser(user) }),
- descFinUser: (user: Discord.User) =>
+ descFinUser: (user: RUser) =>
   t.stp(t.JSON.slashCommands.setLevel.descFinUser, { user: t.languageFunction.getUser(user) }),
- descRole: (role: Discord.Role) =>
+ descRole: (role: RRole) =>
   t.stp(t.JSON.slashCommands.setLevel.descRole, { role: t.languageFunction.getRole(role) }),
- descFinRole: (role: Discord.Role) =>
+ descFinRole: (role: RRole) =>
   t.stp(t.JSON.slashCommands.setLevel.descFinRole, { role: t.languageFunction.getRole(role) }),
 });

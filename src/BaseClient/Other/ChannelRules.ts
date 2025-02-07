@@ -1,5 +1,5 @@
-import Discord from 'discord.js';
 import Prisma from '@prisma/client';
+import BitField from './BitField';
 
 // eslint-disable-next-line no-shadow
 export declare enum ActivityFlags {
@@ -23,7 +23,7 @@ export declare enum ActivityFlags {
  'HasMostMentions' = 131072,
 }
 
-export default class ChannelRules extends Discord.BitField<keyof typeof ActivityFlags> {
+export default class ChannelRules extends BitField<keyof typeof ActivityFlags> {
  All: unknown;
  defaultBit: bigint;
 

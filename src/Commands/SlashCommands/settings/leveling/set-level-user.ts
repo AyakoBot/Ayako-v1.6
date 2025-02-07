@@ -4,7 +4,7 @@ import * as CT from '../../../../Typings/Typings.js';
 export default async (
  cmd: Discord.ChatInputCommandInteraction | Discord.ButtonInteraction,
  _: string[],
- u: Discord.User,
+ u: RUser,
 ) => {
  if (!cmd.inCachedGuild()) return;
 
@@ -137,7 +137,7 @@ export const getComponents = (
 ];
 
 export const getEmbed = (
- user: Discord.User,
+ user: RUser,
  language: CT.Language,
  { xp, level }: { xp: number; level: number },
  { xp: newXP, level: newLevel }: { xp: number; level: number },

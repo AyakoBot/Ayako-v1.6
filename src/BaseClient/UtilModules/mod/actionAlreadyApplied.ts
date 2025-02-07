@@ -6,7 +6,7 @@ import { request } from '../requestHandler.js';
 export default async (
  cmd: ModTypes.CmdType,
  message: ModTypes.ResponseMessage,
- target: Discord.User,
+ target: RUser,
  language: CT.Language,
  type: CT.ModTypes,
 ) => {

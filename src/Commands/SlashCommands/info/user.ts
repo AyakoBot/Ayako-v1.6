@@ -14,8 +14,8 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
   .get(cmd.guild, user.id, cmd.client)
   .then((u) =>
    u && !('message' in u)
-    ? (u.flags ?? new Discord.UserFlagsBitField())
-    : new Discord.UserFlagsBitField(),
+    ? (u.flags ?? new RUserFlagsBitField())
+    : new RUserFlagsBitField(),
   );
  if (user.bot && !flags.has(65536)) flags.add(2048);
 
@@ -91,7 +91,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
 const getMemberEmbed = (
  embeds: Discord.APIEmbed[],
  member: Discord.GuildMember,
- user: Discord.User,
+ user: RUser,
  language: CT.Language,
 ) => {
  const lan = language.slashCommands.info.user;
@@ -160,7 +160,7 @@ const getMemberEmbed = (
  embeds.push(memberEmbed);
 };
 
-const getBotInfo = async (bot: Discord.User, language: CT.Language) => {
+const getBotInfo = async (bot: RUser, language: CT.Language) => {
  const res = await fetch(`https://top.gg/api/bots/${bot.id}`, {
   headers: { Authorization: process.env.topGGtoken ?? '' },
  })
@@ -173,7 +173,7 @@ const getBotInfo = async (bot: Discord.User, language: CT.Language) => {
  return { info: language.slashCommands.info.user.botInfo(res, bot.id), description: res.shortdesc };
 };
 
-const getBoosting = async (flags: string[], user: Discord.User, language: CT.Language) => {
+const getBoosting = async (flags: string[], user: RUser, language: CT.Language) => {
  const boostTimes = (
   await user.client.cluster?.broadcastEval(
    (cl, { memberId }) =>
@@ -226,7 +226,7 @@ const getBoostEmote = (member: Discord.GuildMember) => {
 
 const getComponents = (
  member: Discord.GuildMember | undefined,
- user: Discord.User,
+ user: RUser,
  language: CT.Language,
  guild: Discord.Guild | null,
 ): Discord.APIActionRowComponent<Discord.APIButtonComponent | Discord.APISelectMenuComponent>[] => {

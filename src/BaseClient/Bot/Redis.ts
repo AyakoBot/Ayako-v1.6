@@ -1,5 +1,4 @@
 import Redis from 'ioredis';
-import { glob } from 'glob';
 
 import AutomodCache from './Cache/automod.js';
 import BanCache from './Cache/ban.js';
@@ -14,6 +13,7 @@ import IntegrationCache from './Cache/integration.js';
 import InviteCache from './Cache/invite.js';
 import MemberCache from './Cache/member.js';
 import MessageCache from './Cache/message.js';
+import PinCache from './Cache/pin.js';
 import ReactionCache from './Cache/reaction.js';
 import RoleCache from './Cache/role.js';
 import SoundboardCache from './Cache/soundboard.js';
@@ -22,13 +22,14 @@ import StickerCache from './Cache/sticker.js';
 import ThreadCache from './Cache/thread.js';
 import ThreadMemberCache from './Cache/threadMember.js';
 import UserCache from './Cache/user.js';
+import VCStatusCache from './Cache/vcStatus.js';
 import VoiceCache from './Cache/voice.js';
 import WebhookCache from './Cache/webhook.js';
 
-const db = process.argv.includes('--dev') ? 2 : 0;
+export const db = process.argv.includes('--dev') ? 2 : 0;
 
 const redis = new Redis({ host: 'redis', db });
-const subscriber = new Redis({ host: 'redis', db });
+export const subscriber = new Redis({ host: 'redis', db });
 
 export default redis;
 
@@ -61,28 +62,6 @@ export const cache = {
  users: new UserCache(prefix, redis),
  voices: new VoiceCache(prefix, redis),
  webhooks: new WebhookCache(prefix, redis),
+ pins: new PinCache(prefix, redis),
+ vcStatus: new VCStatusCache(prefix, redis),
 };
-
-subscriber.on('message', async (channel, key) => {
- if (channel !== `__keyevent@${db}__:expired`) return;
- if (key.includes('scheduled-data:')) return;
-
- const keyArgs = key.split(/:/g).slice(2);
- const path = keyArgs.filter((k) => Number.isNaN(+k)).join('/');
-
- const dataKey = key.replace('scheduled:', 'scheduled-data:');
- const value = await redis.get(dataKey);
- redis.expire(dataKey, 10);
-
- const files = await glob(
-  `${process.cwd()}${process.cwd().includes('dist') ? '' : '/dist'}/Events/RedisEvents/**/*`,
- );
-
- const file = files.find((f) => f.endsWith(`${path}.js`));
- if (!file) return;
-
- // eslint-disable-next-line no-console
- console.log(path);
-
- (await import(file)).default(value ? JSON.parse(value) : undefined);
-});

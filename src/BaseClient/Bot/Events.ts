@@ -4,9 +4,13 @@ import client from './Client.js';
 
 const spawnEvents = async () =>
  Promise.all(
-  ['./Events/Bot.js', './Events/Cluster.js', './Events/Process.js', './Events/Rest.js'].map(
-   (p) => import(p),
-  ),
+  [
+   './Events/Bot/index.js',
+   './Events/Cluster.js',
+   './Events/Process.js',
+   './Events/Rest.js',
+   './Events/Redis.js',
+  ].map((p) => import(p)),
  );
 
 if (client.cluster?.maintenance) {

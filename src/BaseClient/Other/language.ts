@@ -1,27 +1,29 @@
+import type { AuditLogEvent } from 'discord-api-types/v10.js';
 import merge from 'lodash.merge';
+import type { RGuild, RUser } from 'src/Typings/Redis.js';
 import client from '../Bot/Client.js';
 import stp from '../UtilModules/stp.js';
-import languageFunction from './language/languageFunction.js';
-import events from './language/events/events.js';
-import time from './language/time.js';
-import channelTypes from './language/channelTypes.js';
-import verification from './language/verification.js';
-import expire from './language/expire.js';
-import channelRules from './language/channelRules.js';
-import auditLogAction from './language/auditLogAction.js';
-import defaultSortOrder from './language/defaultSortOrder.js';
-import defaultForumLayout from './language/defaultForumLayout.js';
-import defaultAutoArchiveDuration from './language/defaultAutoArchiveDuration.js';
-import autotypes from './language/autotypes.js';
 import antivirus from './language/antivirus.js';
+import auditLogAction from './language/auditLogAction.js';
+import autotypes from './language/autotypes.js';
 import censor from './language/censor.js';
-import slashCommands from './language/slashCommands.js';
-import nitro from './language/nitro.js';
-import mod from './language/mod.js';
+import channelRules from './language/channelRules.js';
+import channelTypes from './language/channelTypes.js';
+import defaultAutoArchiveDuration from './language/defaultAutoArchiveDuration.js';
+import defaultForumLayout from './language/defaultForumLayout.js';
+import defaultSortOrder from './language/defaultSortOrder.js';
+import events from './language/events/events.js';
+import expire from './language/expire.js';
+import languageFunction from './language/languageFunction.js';
 import leveling from './language/leveling.js';
+import mod from './language/mod.js';
+import nitro from './language/nitro.js';
+import slashCommands from './language/slashCommands.js';
+import time from './language/time.js';
+import verification from './language/verification.js';
 
-import enJSON from '../../Languages/en-GB.json' with { type: 'json' };
 import deJSON from '../../Languages/de-DE.json' with { type: 'json' };
+import enJSON from '../../Languages/en-GB.json' with { type: 'json' };
 
 export const languages = {
  'en-GB': enJSON,
@@ -35,7 +37,7 @@ const mergeLang = <T extends Record<string, any>>(lang: T) =>
 
 const t = (lan: ReturnType<typeof mergeLang>) => ({
  ...lan.t,
- welcome: (user: Discord.User, guild: Discord.Guild) => stp(lan.t.welcome, { user, guild }),
+ welcome: (user: RUser, guild: RGuild) => stp(lan.t.welcome, { user, guild }),
  defaultValuesLog: (oldValue: string, newValue: string) =>
   stp(lan.t.welcome, { oldValue, newValue }),
  pageBetween: (x: number, y: number) => stp(lan.t.pageBetween, { x, y }),
@@ -91,7 +93,7 @@ export default class Language {
  defaultAutoArchiveDuration: ReturnType<typeof defaultAutoArchiveDuration>;
  defaultForumLayout: ReturnType<typeof defaultForumLayout>;
  defaultSortOrder: ReturnType<typeof defaultSortOrder>;
- auditLogAction: { [key in Discord.GuildAuditLogsEntry['action']]: string };
+ auditLogAction: { [key in AuditLogEvent]: string };
 
  constructor(type: keyof typeof languages) {
   this.CURRENT_LANGUAGE = type;

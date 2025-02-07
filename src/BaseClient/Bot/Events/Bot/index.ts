@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { WebSocketShardEvents } from '@discordjs/ws';
 import {
  GatewayDispatchEvents,
+ GatewayOpcodes,
  type APIGuildChannel,
  type APIThreadChannel,
  type GatewayApplicationCommandPermissionsUpdateDispatchData,
- type GatewayDispatchPayload,
  type GatewayGuildSoundboardSoundsUpdateDispatchData,
  type GatewayInteractionCreateDispatchData,
  type GatewayPresenceUpdateDispatchData,
@@ -13,32 +14,35 @@ import {
  type GatewayTypingStartDispatchData,
  type GatewayUserUpdateDispatchData,
  type GatewayWebhooksUpdateDispatchData,
-} from 'discord.js';
-import type { RChannelTypes } from '../../../BaseClient/Bot/Cache/channel.js';
-import { cache as redis } from '../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
 import {
  AllNonThreadGuildChannelTypes,
  AllThreadGuildChannelTypes,
-} from '../../../Typings/Channel.js';
+} from '../../../../Typings/Channel.js';
+import type { RChannelTypes } from '../../Cache/channel.js';
+import { cache as redis } from '../../Redis.js';
 
-import AutoModeration from './Cache/AutoModeration.js';
-import Channel from './Cache/Channel.js';
-import Entitlements from './Cache/Entitlements.js';
-import Guilds from './Cache/Guilds.js';
-import Integration from './Cache/Integration.js';
-import Invite from './Cache/Invite.js';
-import Message from './Cache/Message.js';
-import Stage from './Cache/Stage.js';
-import Subscription from './Cache/Subscription.js';
-import Thread from './Cache/Thread.js';
-import Voice from './Cache/Voice.js';
+import client from '../../Client.js';
+import AutoModeration from './Events/AutoModeration.js';
+import Channel from './Events/Channel.js';
+import Entitlements from './Events/Entitlements.js';
+import Guilds from './Events/Guilds.js';
+import Integration from './Events/Integration.js';
+import Invite from './Events/Invite.js';
+import Message from './Events/Message.js';
+import Stage from './Events/Stage.js';
+import Subscription from './Events/Subscription.js';
+import Thread from './Events/Thread.js';
+import Voice from './Events/Voice.js';
 
-export default async (data: GatewayDispatchPayload) => {
+client.gateway.on(WebSocketShardEvents.Dispatch, (data) => {
+ if (data.op !== GatewayOpcodes.Dispatch) return;
+
  const cache = caches[data.t];
  if (!cache) return;
 
  cache(data.d as Parameters<typeof cache>[0]);
-};
+});
 
 const caches: Record<GatewayDispatchEvents, (data: never) => unknown> = {
  ...AutoModeration,

@@ -25,8 +25,9 @@ export default class ThreadMemberCache extends Cache<APIThreadMember> {
   const rData = this.apiToR(data, guildId);
   if (!rData) return false;
 
-  await this.redis.set(
+  await this.redis.setex(
    `${this.key()}:${rData.guild_id}:${data.id}:${data.user_id}`,
+   this.ttl,
    JSON.stringify(rData),
   );
 

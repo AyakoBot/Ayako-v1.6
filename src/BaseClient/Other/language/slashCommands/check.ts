@@ -1,10 +1,11 @@
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.check,
  name: t.stp(t.JSON.slashCommands.check.name, { t }),
  desc: (
-  user: Discord.User,
+  user: RUser,
   {
    w,
    m,

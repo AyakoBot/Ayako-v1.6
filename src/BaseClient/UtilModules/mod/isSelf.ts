@@ -6,8 +6,8 @@ import { request } from '../requestHandler.js';
 
 export default (
  cmd: ModTypes.CmdType,
- executor: Discord.User,
- target: Discord.User,
+ executor: RUser,
+ target: RUser,
  message: ModTypes.ResponseMessage,
  language: CT.Language,
  type: CT.ModTypes,

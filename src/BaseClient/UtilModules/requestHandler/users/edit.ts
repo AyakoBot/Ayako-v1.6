@@ -13,17 +13,17 @@ function fn(
  guild: undefined | null | Discord.Guild,
  data: Discord.RESTPatchAPICurrentUserJSONBody,
  client: Discord.Client<true>,
-): Promise<Discord.User | Discord.DiscordAPIError | Error>;
+): Promise<RUser | Discord.DiscordAPIError | Error>;
 function fn(
  guild: Discord.Guild,
  data: Discord.RESTPatchAPICurrentUserJSONBody,
  client?: undefined,
-): Promise<Discord.User | Discord.DiscordAPIError | Error>;
+): Promise<RUser | Discord.DiscordAPIError | Error>;
 async function fn(
  guild: undefined | null | Discord.Guild,
  data: Discord.RESTPatchAPICurrentUserJSONBody,
  client?: Discord.Client<true>,
-): Promise<Discord.User | Discord.DiscordAPIError | Error> {
+): Promise<RUser | Discord.DiscordAPIError | Error> {
  if (process.argv.includes('--silent')) return new Error('Silent mode enabled.');
 
  const c = (guild?.client ?? client)!;

@@ -9,7 +9,7 @@ import { request } from './requestHandler.js';
 export default async (event: Discord.GuildScheduledEvent) => {
  if (!event.guild) return [];
 
- const users: { member: Discord.GuildMember | undefined; user: Discord.User }[] = [];
+ const users: { member: Discord.GuildMember | undefined; user: RUser }[] = [];
 
  const fetches = Math.ceil(Number(event.userCount) / 100);
  for (let i = 0; i < fetches; i += 1) {

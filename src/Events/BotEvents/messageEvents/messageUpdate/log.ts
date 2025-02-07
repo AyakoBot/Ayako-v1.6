@@ -172,11 +172,11 @@ export default async (oldMsg: Discord.Message, msg: Discord.Message) => {
   const oldMentions = msg.client.util.getDifference(
    oldMsg.mentions.users.map((o) => o),
    msg.mentions.users.map((o) => o),
-  ) as Discord.User[];
+  ) as RUser[];
   const newMentions = msg.client.util.getDifference(
    msg.mentions.users.map((o) => o),
    oldMsg.mentions.users.map((o) => o),
-  ) as Discord.User[];
+  ) as RUser[];
 
   merge(
    oldMentions.map((i) => `<@${i.id}>`).join(', ') ?? language.t.None,

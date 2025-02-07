@@ -1,4 +1,4 @@
-import { InteractionType } from 'discord.js';
+import { InteractionType } from 'discord-api-types/v10.js';
 import { scheduleJob } from 'node-schedule';
 import { Counter, Gauge, Registry } from 'prom-client';
 import redis from './Redis.js';

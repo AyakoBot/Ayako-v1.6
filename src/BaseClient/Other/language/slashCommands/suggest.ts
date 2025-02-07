@@ -1,8 +1,9 @@
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.suggest,
- banned: (user: Discord.User) =>
+ banned: (user: RUser) =>
   t.stp(t.JSON.slashCommands.suggest.banned, { user: t.languageFunction.getUser(user) }),
  cantBan: (cmdId: string) => t.stp(t.JSON.slashCommands.suggest.cantBan, { cmdId }),
  sent: t.stp(t.JSON.slashCommands.suggest.sent, {

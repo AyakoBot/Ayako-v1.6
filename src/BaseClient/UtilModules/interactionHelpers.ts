@@ -94,7 +94,7 @@ const reply = async (
      (b) => b.userid === u?.id || b.blockeduserid === u?.id || b.blockeduserid === '0',
     ),
   )
-  .filter((u): u is Discord.User => u instanceof Discord.User);
+  .filter((u): u is RUser => u instanceof RUser);
  const language = await getLanguage(cmd.guildId);
  const lan = language.slashCommands.interactions[commandName as InteractionKeys];
  const con = constants.commands.interactions.find((c) => c.name === commandName);
@@ -324,7 +324,7 @@ const parsers = {
    cmd.options.getUser('user-3', false),
    cmd.options.getUser('user-4', false),
    cmd.options.getUser('user-5', false),
-  ].filter((u): u is Discord.User => !!u),
+  ].filter((u): u is RUser => !!u),
   text: cmd.options.getString('text', false) ?? '',
   otherText: constants.commands.interactions
    .filter((c) => 'specialOptions' in c)
@@ -362,7 +362,7 @@ const parsers = {
       cmd.client,
      )
      .then((u) => ('message' in u ? undefined : u))),
-  ].filter((u): u is Discord.User => !!u && !('message' in u)),
+  ].filter((u): u is RUser => !!u && !('message' in u)),
   text: '',
   otherText: '',
   commandName: cmd.customId.split('_')[0].toLowerCase(),
@@ -400,7 +400,7 @@ const getComponents = (
  * @param users An array of Discord users or user IDs.
  * @returns A string containing user mentions separated by commas.
  */
-const mapper = (u: (Discord.User | string)[]) =>
+const mapper = (u: (RUser | string)[]) =>
  u
   .map((m) => `<@${typeof m !== 'string' ? m.id : encodeString2BigInt(m, 36)}>`)
   .filter((a, index, arr) => arr.indexOf(a) === index)
@@ -460,8 +460,8 @@ const getPayload = <T extends keyof CT.Language['slashCommands']['interactions']
  * @returns A string describing the interaction.
  */
 const getDesc = <T extends keyof CT.Language['slashCommands']['interactions']>(
- author: Discord.User,
- originalUsers: readonly Discord.User[],
+ author: RUser,
+ originalUsers: readonly RUser[],
  language: CT.Language,
  lan: CT.Language['slashCommands']['interactions'][T],
  cmd: Discord.ChatInputCommandInteraction | Discord.ButtonInteraction | Discord.Message,
@@ -504,9 +504,9 @@ const getDesc = <T extends keyof CT.Language['slashCommands']['interactions']>(
 };
 
 /**
- * Parses mentioned users in a message and returns an array of Discord.User objects.
+ * Parses mentioned users in a message and returns an array of RUser objects.
  * @param msg The message to parse.
- * @returns An array of Discord.User objects representing the mentioned users in the message.
+ * @returns An array of RUser objects representing the mentioned users in the message.
  */
 const parseMsgUsers = async (msg: Discord.Message<true>) => {
  const client = (await import('../Bot/Client.js')).default as Discord.Client;
@@ -514,7 +514,7 @@ const parseMsgUsers = async (msg: Discord.Message<true>) => {
  const mentionedUsers = msg.mentions.users.size
   ? msg.mentions.users
      .map((o) => o)
-     .filter((u): u is Discord.User => !!u && u.id !== client.user?.id)
+     .filter((u): u is RUser => !!u && u.id !== client.user?.id)
   : undefined;
 
  if (mentionedUsers?.length) {
@@ -584,5 +584,5 @@ const parseMsgUsers = async (msg: Discord.Message<true>) => {
 
  const url = new URL(embed.url as string);
  const executorId = url.searchParams.get('exec') as string;
- return [await getUser(executorId)].filter((u): u is Discord.User => !!u);
+ return [await getUser(executorId)].filter((u): u is RUser => !!u);
 };

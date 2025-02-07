@@ -28,7 +28,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
 
 export const getPayload = async (
  baseInfo: {
-  user: Discord.User;
+  user: RUser;
   guild: Discord.Guild;
   language?: CT.Language;
   member?: Discord.GuildMember;

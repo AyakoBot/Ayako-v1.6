@@ -14,7 +14,7 @@ export default () =>
   .forEach(async (guild) => {
    if (!guild) return;
 
-   const members = guild.members.cache.filter((m) => m.user.flags?.has(Discord.UserFlags.Spammer));
+   const members = guild.members.cache.filter((m) => m.user.flags?.has(RUserFlags.Spammer));
 
    members.forEach((m) => {
     client.util.mod(

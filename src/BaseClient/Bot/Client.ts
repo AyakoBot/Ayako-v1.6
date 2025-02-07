@@ -1,67 +1,64 @@
-import * as DiscordCore from '@discordjs/core';
-import * as Sharding from 'discord-hybrid-sharding';
+import { Client } from '@discordjs/core';
+import { REST } from '@discordjs/rest';
+import { CompressionMethod, Encoding, WebSocketManager } from '@discordjs/ws';
+import { ActivityType, GatewayIntentBits, PresenceUpdateStatus } from 'discord-api-types/v10';
+import { ClusterClient, getInfo } from 'discord-hybrid-sharding';
+import { cache } from './Redis.js';
 
-const client = new Discord.Client({
- shards: Sharding.getInfo().SHARD_LIST,
- shardCount: Sharding.getInfo().TOTAL_SHARDS,
- rest: { api: 'http://nirn:8080/api' },
- allowedMentions: {
-  parse: ['users'],
-  repliedUser: false,
- },
- partials: [
-  Discord.Partials.User,
-  Discord.Partials.Channel,
-  Discord.Partials.GuildMember,
-  Discord.Partials.Message,
-  Discord.Partials.Reaction,
-  Discord.Partials.GuildScheduledEvent,
-  Discord.Partials.ThreadMember,
- ],
- failIfNotExists: false,
- intents: [
-  Discord.IntentsBitField.Flags.Guilds,
-  Discord.IntentsBitField.Flags.GuildMembers,
-  Discord.IntentsBitField.Flags.GuildModeration,
-  Discord.IntentsBitField.Flags.GuildExpressions,
-  Discord.IntentsBitField.Flags.GuildIntegrations,
-  Discord.IntentsBitField.Flags.GuildWebhooks,
-  Discord.IntentsBitField.Flags.GuildInvites,
-  Discord.IntentsBitField.Flags.GuildVoiceStates,
-  Discord.IntentsBitField.Flags.GuildMessages,
-  Discord.IntentsBitField.Flags.GuildMessageReactions,
-  Discord.IntentsBitField.Flags.DirectMessages,
-  Discord.IntentsBitField.Flags.DirectMessageReactions,
-  Discord.IntentsBitField.Flags.MessageContent,
-  Discord.IntentsBitField.Flags.GuildScheduledEvents,
-  Discord.IntentsBitField.Flags.AutoModerationConfiguration,
-  Discord.IntentsBitField.Flags.AutoModerationExecution,
-  Discord.IntentsBitField.Flags.GuildMessageTyping,
- ],
- sweepers: {
-  messages: {
-   interval: 60,
-   lifetime: 1_209_600, // 14 days
-  },
- },
- presence: {
-  status: Discord.PresenceUpdateStatus.Idle,
+const rest = new REST({ api: 'http://nirn:8080/api' });
+rest.setToken((process.argv.includes('--dev') ? process.env.DevToken : process.env.Token) ?? '');
+
+const gateway = new WebSocketManager({
+ rest,
+ intents:
+  GatewayIntentBits.Guilds |
+  GatewayIntentBits.GuildMembers |
+  GatewayIntentBits.GuildModeration |
+  GatewayIntentBits.GuildExpressions |
+  GatewayIntentBits.GuildIntegrations |
+  GatewayIntentBits.GuildWebhooks |
+  GatewayIntentBits.GuildInvites |
+  GatewayIntentBits.GuildVoiceStates |
+  GatewayIntentBits.GuildMessages |
+  GatewayIntentBits.GuildMessageReactions |
+  GatewayIntentBits.DirectMessages |
+  GatewayIntentBits.DirectMessageReactions |
+  GatewayIntentBits.MessageContent |
+  GatewayIntentBits.GuildScheduledEvents |
+  GatewayIntentBits.AutoModerationConfiguration |
+  GatewayIntentBits.AutoModerationExecution |
+  GatewayIntentBits.GuildMessageTyping,
+ shardCount: getInfo().TOTAL_SHARDS,
+ shardIds: getInfo().SHARD_LIST,
+ token: (process.argv.includes('--dev') ? process.env.DevToken : process.env.Token) ?? '',
+ compression: CompressionMethod.ZlibNative,
+ encoding: Encoding.JSON,
+ initialPresence: {
+  status: PresenceUpdateStatus.Idle,
   afk: true,
+  since: Date.now() - 10000,
   activities: [
    {
     state: 'Starting up...',
     name: 'Starting up...',
-    type: Discord.ActivityType.Custom,
+    type: ActivityType.Custom,
    },
   ],
  },
+ useIdentifyCompression: true,
+ largeThreshold: 250,
 });
 
-client.cluster = new Sharding.ClusterClient(client);
+gateway.setToken((process.argv.includes('--dev') ? process.env.DevToken : process.env.Token) ?? '');
 
-await client.login(
- (process.argv.includes('--dev') ? process.env.DevToken : process.env.Token) ?? '',
-);
+const client = new Client({
+ rest,
+ gateway,
+});
 
-export const API = new DiscordCore.API(client.rest);
+client.cluster = new ClusterClient(client);
+client.cache = cache;
+
+gateway.connect();
+
 export default client;

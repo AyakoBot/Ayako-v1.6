@@ -1,14 +1,16 @@
-import { type DjsDiscordClient } from 'discord-hybrid-sharding';
+import type { Client } from '@discordjs/core';
 import { glob } from 'glob';
 import { scheduleJob } from 'node-schedule';
+import type { RGuild } from 'src/Typings/Redis.js';
 import getPathFromError from '../UtilModules/getPathFromError.js';
 import Manager from './Manager.js';
+import Redis from './Redis.js';
 
 scheduleJob(getPathFromError(new Error()), '0 */10 * * * *', async () => {
  const guildCount = await Manager.fetchClientValues('guilds?.cache.size');
 
  Manager.broadcastEval(
-  async (cl: DjsDiscordClient, { guilds }: { guilds: number }) => {
+  async (cl: Client, { guilds }: { guilds: number }) => {
    const app = await cl.util.request.applications
     .getCurrent(undefined)
     .then((r) => ('message' in r ? undefined : r));
@@ -26,24 +28,17 @@ https://support.ayakobot.com`,
  );
 });
 
-const getAllUsers = async () =>
- (
-  (await Manager.broadcastEval((c) =>
-   c.guilds?.cache.reduce((acc, guild) => acc + guild.memberCount, 0),
-  )) ?? [0]
- )?.reduce((acc, guildCount) => acc + guildCount, 0) ?? null;
-
-const getAllGuilds = async () =>
- ((await Manager.broadcastEval((c) => c.guilds?.cache.size)) ?? [0])?.reduce(
-  (acc, guildCount) => acc + guildCount,
-  0,
- ) ?? null;
-
-const run = () => {
+const run = async () => {
  if (Buffer.from(Manager.token!.split('.')[0], 'base64').toString() !== process.env.mainId) return;
 
  scheduleJob(getPathFromError(new Error()), '0 0 */1 * * *', async () => {
-  const [users, guilds] = await Promise.all([getAllUsers(), getAllGuilds()]);
+  const guildKeys = await Redis.keys(`${process.env.mainId}:cache::guilds:*`);
+  const guilds = await Promise.all(guildKeys.map((k) => Redis.get(k))).then((r) =>
+   r.filter((g): g is string => !!g).map((g) => JSON.parse(g) as RGuild),
+  );
+
+  const users = guilds.reduce((a, b) => a + b.member_count || b.approximate_member_count || 0, 0);
+
   // eslint-disable-next-line no-console
   console.log(`| Stats: ${users} Users, ${guilds} Guilds, ${Manager.totalShards} Shards`);
 
@@ -59,7 +54,7 @@ const run = () => {
 
     const file = await import(f);
 
-    file.default(guilds, users);
+    file.default(guildKeys.length, users);
    });
  });
 };

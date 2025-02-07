@@ -4,7 +4,6 @@ import { prefix } from '../../../../BaseClient/UtilModules/getScheduled.js';
 
 export default async (msg: Message) => {
  if (!msg.inGuild()) return;
- if (msg.author?.bot) return;
 
  await Promise.all(
   msg.member?.roles.cache.map((role) =>

@@ -45,7 +45,11 @@ export default class GuildCommandCache extends Cache<
   const rData = this.apiToR(data);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${data.guild_id}:${data.id}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${data.guild_id}:${data.id}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }

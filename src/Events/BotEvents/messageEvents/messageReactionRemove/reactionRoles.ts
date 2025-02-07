@@ -1,7 +1,7 @@
 
 export default async (
  reaction: Discord.MessageReaction,
- user: Discord.User,
+ user: RUser,
  msg: Discord.Message<true>,
 ) => {
  const settings = await reaction.client.util.DataBase.reactionrolesettings.findFirst({

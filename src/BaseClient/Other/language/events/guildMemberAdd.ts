@@ -1,3 +1,4 @@
+import type { RGuild } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
@@ -28,11 +29,13 @@ export default (t: CT.Language) => ({
   ...t.JSON.events.guildMemberAdd.thanks4Adding,
   thanksUser: (u: string) =>
    t.stp(t.JSON.events.guildMemberAdd.thanks4Adding.thanksUser, { user: u }),
-  fields: (g: Discord.Guild) =>
+  fields: (g: RGuild) =>
    t.JSON.events.guildMemberAdd.thanks4Adding.fields.map((f) => ({
     name: '\u200b',
     value: t.stp(f, {
-     rulesChannel: g.rulesChannel ?? t.JSON.events.guildMemberAdd.thanks4Adding.needsCommunity,
+     rulesChannel: g.rules_channel_id
+      ? `<#${g.rules_channel_id}>`
+      : t.JSON.events.guildMemberAdd.thanks4Adding.needsCommunity,
     }),
    })),
  },

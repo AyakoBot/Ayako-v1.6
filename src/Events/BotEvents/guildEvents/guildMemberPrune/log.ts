@@ -15,7 +15,7 @@ export default async (audit: Discord.GuildAuditLogsEntry, guild: Discord.Guild) 
    icon_url: con.Prune,
    name: lan.memberPrune,
   },
-  description: lan.descMemberPrune(audit.executor as Discord.User, extra.removed, extra.days),
+  description: lan.descMemberPrune(audit.executor as RUser, extra.removed, extra.days),
   color: CT.Colors.Danger,
   timestamp: new Date().toISOString(),
  };

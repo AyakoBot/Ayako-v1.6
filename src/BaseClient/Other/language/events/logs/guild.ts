@@ -1,237 +1,281 @@
+import type { APIApplicationCommand, APIAuditLogEntry } from 'discord-api-types/v10.js';
+import type {
+ RAutomod,
+ RChannel,
+ REmoji,
+ REvent,
+ RGuild,
+ RIntegration,
+ RInvite,
+ RMessage,
+ RRole,
+ RStageInstance,
+ RSticker,
+ RThread,
+ RUser,
+ RWebhook,
+} from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.events.logs.guild,
- descBan: (user: Discord.User) =>
+ descBan: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBan, {
    user: t.languageFunction.getUser(user),
   }),
- descBanAudit: (user: Discord.User, executor: Discord.User) =>
+ descBanAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBanAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descUnban: (user: Discord.User) =>
+ descUnban: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descUnban, {
    user: t.languageFunction.getUser(user),
   }),
- descUnbanAudit: (user: Discord.User, executor: Discord.User) =>
+ descUnbanAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descUnbanAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descEmojiCreateAudit: (user: Discord.User, emoji: Discord.Emoji) =>
+ descEmojiCreateAudit: (user: RUser, emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiCreateAudit, {
    user: t.languageFunction.getUser(user),
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descEmojiCreate: (emoji: Discord.Emoji) =>
+ descEmojiCreate: (emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiCreate, {
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descEmojiDeleteAudit: (user: Discord.User, emoji: Discord.Emoji) =>
+ descEmojiDeleteAudit: (user: RUser, emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiDeleteAudit, {
    user: t.languageFunction.getUser(user),
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descEmojiDelete: (emoji: Discord.Emoji) =>
+ descEmojiDelete: (emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiDelete, {
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descEmojiUpdateAudit: (user: Discord.User, emoji: Discord.Emoji) =>
+ descEmojiUpdateAudit: (user: RUser, emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiUpdateAudit, {
    user: t.languageFunction.getUser(user),
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descEmojiUpdate: (emoji: Discord.Emoji) =>
+ descEmojiUpdate: (emoji: REmoji) =>
   t.stp(t.JSON.events.logs.guild.descEmojiUpdate, {
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descJoinAudit: (user: Discord.User, executor: Discord.User) =>
+ descJoinAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descJoinAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descMemberJoin: (user: Discord.User) =>
+ descMemberJoin: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descMemberJoin, {
    user: t.languageFunction.getUser(user),
   }),
- descBotJoin: (user: Discord.User) =>
+ descBotJoin: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBotJoin, {
    user: t.languageFunction.getUser(user),
   }),
- descBotLeave: (user: Discord.User) =>
+ descBotLeave: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBotLeave, {
    user: t.languageFunction.getUser(user),
   }),
- descBotLeaveAudit: (user: Discord.User, executor: Discord.User) =>
+ descBotLeaveAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBotLeaveAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descMemberLeave: (user: Discord.User) =>
+ descMemberLeave: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descMemberLeave, {
    user: t.languageFunction.getUser(user),
   }),
- descMemberLeaveAudit: (user: Discord.User, executor: Discord.User) =>
+ descMemberLeaveAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descMemberLeaveAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descBotUpdate: (user: Discord.User) =>
+ descBotUpdate: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBotUpdate, {
    user: t.languageFunction.getUser(user),
   }),
- descBotUpdateAudit: (user: Discord.User, executor: Discord.User) =>
+ descBotUpdateAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descBotUpdateAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
- descMemberUpdate: (user: Discord.User) =>
+ descMemberUpdate: (user: RUser) =>
   t.stp(t.JSON.events.logs.guild.descMemberUpdate, {
    user: t.languageFunction.getUser(user),
   }),
- descMemberUpdateAudit: (user: Discord.User, executor: Discord.User) =>
+ descMemberUpdateAudit: (user: RUser, executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descMemberUpdateAudit, {
    executor: t.languageFunction.getUser(executor),
    user: t.languageFunction.getUser(user),
   }),
  descGuildUpdate: () => t.JSON.events.logs.guild.descGuildUpdate,
- descGuildUpdateAudit: (executor: Discord.User) =>
+ descGuildUpdateAudit: (executor: RUser) =>
   t.stp(t.JSON.events.logs.guild.descGuildUpdateAudit, {
    executor: t.languageFunction.getUser(executor),
   }),
- descAuditLogCreate: (audit: Discord.GuildAuditLogsEntry) =>
+ descAuditLogCreate: (audit: APIAuditLogEntry, executor: RUser | undefined) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreate, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
   }),
- descAuditLogCreateGuild: (audit: Discord.GuildAuditLogsEntry, guild: Discord.Guild) =>
+ descAuditLogCreateGuild: (audit: APIAuditLogEntry, guild: RGuild, executor: RUser | undefined) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateGuild, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    guild: t.languageFunction.getGuild(guild),
   }),
- descAuditLogCreateChannel: (audit: Discord.GuildAuditLogsEntry, channel: Discord.GuildChannel) =>
+ descAuditLogCreateChannel: (
+  audit: APIAuditLogEntry,
+  channel: RChannel,
+  executor: RUser | undefined,
+ ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateChannel, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    channel: t.languageFunction.getChannel(channel),
   }),
- descAuditLogCreateUser: (audit: Discord.GuildAuditLogsEntry, user: Discord.User) =>
+ descAuditLogCreateUser: (audit: APIAuditLogEntry, user: RUser, executor: RUser | undefined) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateUser, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    user: t.languageFunction.getUser(user),
   }),
  descAuditLogCreateRole: (
-  audit: Discord.GuildAuditLogsEntry,
-  role: Discord.Role | { id: string; name: string },
+  audit: APIAuditLogEntry,
+  role: RRole | { id: string; name: string },
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateRole, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    role: t.languageFunction.getRole(role),
   }),
- descAuditLogCreateInvite: (audit: Discord.GuildAuditLogsEntry, invite: Discord.Invite) =>
+ descAuditLogCreateInvite: (
+  audit: APIAuditLogEntry,
+  invite: RInvite,
+  executor: RUser | undefined,
+ ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateInvite, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    invite: t.languageFunction.getInvite(invite),
   }),
- descAuditLogCreateWebhook: (audit: Discord.GuildAuditLogsEntry, w: Discord.Webhook) =>
+ descAuditLogCreateWebhook: (
+  audit: APIAuditLogEntry,
+  webhook: RWebhook,
+  executor: RUser | undefined,
+ ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateWebhook, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
-   webhook: t.languageFunction.getWebhook(w),
+   executor: executor ? t.languageFunction.getUser(executor) : '',
+   webhook: t.languageFunction.getWebhook(webhook),
   }),
- descAuditLogCreateEmoji: (audit: Discord.GuildAuditLogsEntry, emoji: Discord.Emoji) =>
+ descAuditLogCreateEmoji: (audit: APIAuditLogEntry, emoji: REmoji, executor: RUser | undefined) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateEmoji, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    emoji: t.languageFunction.getEmote(emoji),
   }),
- descAuditLogCreateMessage: (audit: Discord.GuildAuditLogsEntry, message: Discord.Message) =>
+ descAuditLogCreateMessage: (
+  audit: APIAuditLogEntry,
+  message: RMessage,
+  executor: RUser | undefined,
+ ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateMessage, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    message: t.languageFunction.getMessage(message),
   }),
  descAuditLogCreateIntegration: (
-  audit: Discord.GuildAuditLogsEntry,
-  integration: Discord.Integration,
+  audit: APIAuditLogEntry,
+  integration: RIntegration,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateIntegration, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    integration: t.languageFunction.getIntegration(integration),
   }),
  descAuditLogCreateStageInstance: (
-  audit: Discord.GuildAuditLogsEntry,
-  stageInstance: Discord.StageInstance,
+  audit: APIAuditLogEntry,
+  stageInstance: RStageInstance,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateStageInstance, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    stageInstance: t.languageFunction.getStageInstance(stageInstance),
   }),
- descAuditLogCreateSticker: (audit: Discord.GuildAuditLogsEntry, s: Discord.Sticker) =>
+ descAuditLogCreateSticker: (audit: APIAuditLogEntry, s: RSticker, executor: RUser | undefined) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateSticker, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    sticker: t.languageFunction.getSticker(s),
   }),
- descAuditLogCreateThread: (audit: Discord.GuildAuditLogsEntry, thread: Discord.ThreadChannel) =>
+ descAuditLogCreateThread: (
+  audit: APIAuditLogEntry,
+  thread: RThread,
+  executor: RUser | undefined,
+ ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateThread, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    thread: t.languageFunction.getChannel(thread),
   }),
  descAuditLogCreateGuildScheduledEvent: (
-  audit: Discord.GuildAuditLogsEntry,
-  s: Discord.GuildScheduledEvent,
+  audit: APIAuditLogEntry,
+  s: REvent,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateGuildScheduledEvent, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    scheduledEvent: t.languageFunction.getScheduledEvent(s),
   }),
  descAuditLogCreateApplicationCommand: (
-  audit: Discord.GuildAuditLogsEntry,
-  applicationCommand: Discord.ApplicationCommand,
+  audit: APIAuditLogEntry,
+  applicationCommand: APIApplicationCommand,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateApplicationCommand, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    command: t.languageFunction.getCommand(applicationCommand),
   }),
  descAuditLogCreateAutoModerationRule: (
-  audit: Discord.GuildAuditLogsEntry,
-  autoModerationRule: Discord.AutoModerationRule,
+  audit: APIAuditLogEntry,
+  autoModerationRule: RAutomod,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateAutoModerationRule, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
+   executor: executor ? t.languageFunction.getUser(executor) : '',
    autoModerationRule: t.languageFunction.getAutoModerationRule(autoModerationRule),
   }),
  descAuditLogCreateAutoModeration: (
-  audit: Discord.GuildAuditLogsEntry,
-  member: Discord.GuildMember,
-  rule: Discord.AutoModerationRule,
+  audit: APIAuditLogEntry,
+  user: RUser,
+  rule: RAutomod,
+  executor: RUser | undefined,
  ) =>
   t.stp(t.JSON.events.logs.guild.descAuditLogCreateAutoModeration, {
    audit: t.languageFunction.getAuditLog(audit),
-   executor: audit.executor ? t.languageFunction.getUser(audit.executor) : '',
-   member: t.languageFunction.getUser(member.user),
+   executor: executor ? t.languageFunction.getUser(executor) : '',
+   member: t.languageFunction.getUser(user),
    autoModerationRule: t.languageFunction.getAutoModerationRule(rule),
   }),
- descMemberPrune: (executor: Discord.User, amount: number, days: number) =>
+ descMemberPrune: (executor: RUser, amount: number, days: number) =>
   t.stp(t.JSON.events.logs.guild.descMemberPrune, {
    executor: t.languageFunction.getUser(executor),
    amount: `${amount}`,
    days: `${days}`,
   }),
- welcomeChannelEmoji: (channel: Discord.GuildChannel) =>
+ welcomeChannelEmoji: (channel: RChannel) =>
   t.stp(t.JSON.events.logs.guild.welcomeChannelEmoji, {
    channel: t.languageFunction.getChannel(channel),
   }),

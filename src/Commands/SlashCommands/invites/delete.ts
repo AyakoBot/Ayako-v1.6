@@ -54,7 +54,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
  cmd.client.util.replyCmd(cmd, { content: lan.deleted(invite) });
 };
 
-const canDelete = (invite: Discord.Invite, user: Discord.User) => {
+const canDelete = (invite: Discord.Invite, user: RUser) => {
  if (!invite.guild) return false;
  if (!('members' in invite.guild)) return false;
 

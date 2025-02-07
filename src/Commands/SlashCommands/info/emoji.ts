@@ -200,7 +200,7 @@ const getEmotePayloads = async (
        'author' in emoji && emoji.author
         ? {
            name: `${cl.util.util.makeBold(lan.emojis.uploader)}:\n`,
-           value: language.languageFunction.getUser(emoji.author as Discord.User),
+           value: language.languageFunction.getUser(emoji.author as RUser),
           }
         : undefined,
       ]

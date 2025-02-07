@@ -1,6 +1,7 @@
 import type { APIMessage, APIMessageSnapshotFields } from 'discord-api-types/v10';
 import type Redis from 'ioredis';
 import Cache from './base.js';
+import PinCache from './pin.js';
 
 export type RMessage = Omit<
  APIMessage,
@@ -73,7 +74,9 @@ export default class MessageCache extends Cache<APIMessage> {
   const exists = await this.redis.exists(key);
 
   if (exists) await this.redis.set(key, JSON.stringify(rData), 'KEEPTTL');
-  else await this.redis.setex(key, 1209600, JSON.stringify(rData));
+  else await this.redis.setex(key, this.ttl, JSON.stringify(rData));
+
+  new PinCache(this.prefix, this.redis).refresh(data.channel_id);
 
   return true;
  }

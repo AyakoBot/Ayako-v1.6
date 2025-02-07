@@ -3,7 +3,7 @@ import getPathFromError from '../../../../BaseClient/UtilModules/getPathFromErro
 import log from './log.js';
 import reactionRoles from './reactionRoles.js';
 
-export default async (reaction: Discord.MessageReaction, user: Discord.User) => {
+export default async (reaction: Discord.MessageReaction, user: RUser) => {
  if (!reaction.message.guild) return;
 
  await reaction.client.util.firstGuildInteraction(

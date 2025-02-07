@@ -15,8 +15,8 @@ import send from './send.js';
 export default async <T extends CT.ModTypes>(
  guild: Discord.Guild,
  type: T,
- target: Discord.User,
- executor: Discord.User,
+ target: RUser,
+ executor: RUser,
  options: CT.ModOptions<T>,
 ): Promise<void> => {
  const logchannels = await getLogChannels('modlog', guild);

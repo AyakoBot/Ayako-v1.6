@@ -1,8 +1,9 @@
+import type { RRole, RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.roles.customRole,
- edit: (role: Discord.Role, limit: { icon: boolean; color: boolean }) =>
+ edit: (role: RRole, limit: { icon: boolean; color: boolean }) =>
   t.stp(t.JSON.slashCommands.roles.customRole.edit, {
    role: t.languageFunction.getRole(role),
    icon: t.util.constants.standard.getEmote(
@@ -12,7 +13,7 @@ export default (t: CT.Language) => ({
     limit.color ? t.util.emotes.enabled : t.util.emotes.disabled,
    ),
   }),
- create: (role: Discord.Role, limit: { icon: boolean; color: boolean }) =>
+ create: (role: RRole, limit: { icon: boolean; color: boolean }) =>
   t.stp(t.JSON.slashCommands.roles.customRole.create, {
    role: t.languageFunction.getRole(role),
    icon: t.util.constants.standard.getEmote(

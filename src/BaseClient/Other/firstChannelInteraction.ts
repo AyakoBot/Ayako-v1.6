@@ -1,7 +1,7 @@
-
+import type { RChannel, RThread } from 'src/Typings/Redis.js';
 import cache from '../UtilModules/cache.js';
 
-export default async (channel: Discord.GuildChannel | null) => {
+export default async (channel: RChannel | RThread | null) => {
  if (!channel) return;
  if (!(channel instanceof Discord.GuildChannel)) return;
  if (channel.type === Discord.ChannelType.GuildCategory) return;

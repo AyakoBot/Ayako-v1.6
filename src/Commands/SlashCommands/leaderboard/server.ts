@@ -124,7 +124,7 @@ export const getOwnLevel = async (
 export const getLongest = (
  { lan, language }: { lan: CT.Language['slashCommands']['leaderboard']; language: CT.Language },
  levels: Prisma.level[],
- users: (Discord.User | undefined)[],
+ users: (RUser | undefined)[],
 ) => {
  let longestLevel = Math.max(...levels.map((l) => String(l.level).length));
  let longestXP = Math.max(
@@ -174,7 +174,7 @@ export const getEmbed = async (
  { levels, longestLevel, level }: { levels: Prisma.level[]; level: number; longestLevel: number },
  { xp, longestXP }: { xp: number; longestXP: number },
  { displayNames, longestUsername }: { displayNames: string[]; longestUsername: number },
- user: Discord.User,
+ user: RUser,
  guild?: Discord.Guild,
 ): Promise<Discord.APIEmbed> => ({
  author: {

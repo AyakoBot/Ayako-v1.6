@@ -21,7 +21,11 @@ export default class BanCache extends Cache<APIBan> {
   const rData = this.apiToR(data, guildId);
   if (!rData) return false;
 
-  await this.redis.set(`${this.key()}:${rData.guild_id}:${rData.user_id}`, JSON.stringify(rData));
+  await this.redis.setex(
+   `${this.key()}:${rData.guild_id}:${rData.user_id}`,
+   this.ttl,
+   JSON.stringify(rData),
+  );
 
   return true;
  }

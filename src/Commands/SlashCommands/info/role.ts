@@ -62,7 +62,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
     ? {
        name: eventLan.managed,
        value: `${language.languageFunction.getUser(
-        (await cmd.client.util.getUser(role.tags.botId)) as Discord.User,
+        (await cmd.client.util.getUser(role.tags.botId)) as RUser,
        )}`,
       }
     : undefined,
@@ -70,7 +70,7 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
     ? {
        name: language.t.Bot,
        value: `${language.languageFunction.getUser(
-        (await cmd.client.util.getUser(role.tags.integrationId)) as Discord.User,
+        (await cmd.client.util.getUser(role.tags.integrationId)) as RUser,
        )}`,
       }
     : undefined,

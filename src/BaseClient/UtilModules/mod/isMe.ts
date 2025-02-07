@@ -7,7 +7,7 @@ import { request } from '../requestHandler.js';
 
 export default async (
  cmd: ModTypes.CmdType,
- client: Discord.User,
+ client: RUser,
  message: ModTypes.ResponseMessage,
  language: CT.Language,
  options: CT.BaseOptions,

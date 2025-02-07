@@ -10,7 +10,7 @@ export interface ScheduledEventUsers {
   * @param guildId - The ID of the guild the scheduled event belongs to.
   * @param scheduledEventId - The ID of the scheduled event.
   */
- add: (user: Discord.User, guildId: string, scheduledEventId: string) => void;
+ add: (user: RUser, guildId: string, scheduledEventId: string) => void;
 
  /**
   * Removes a user from the scheduled event cache.
@@ -18,16 +18,16 @@ export interface ScheduledEventUsers {
   * @param guildId - The ID of the guild the scheduled event belongs to.
   * @param scheduledEventId - The ID of the scheduled event.
   */
- remove: (user: Discord.User, guildId: string, scheduledEventId: string) => void;
+ remove: (user: RUser, guildId: string, scheduledEventId: string) => void;
 
  /**
   * The cache of scheduled event users.
   */
- cache: Map<string, Map<string, Map<string, Discord.User>>>;
+ cache: Map<string, Map<string, Map<string, RUser>>>;
 }
 
 const self: ScheduledEventUsers = {
- add: (user: Discord.User, guildId: string, eventId: string) => {
+ add: (user: RUser, guildId: string, eventId: string) => {
   if (!self.cache.get(guildId)) {
    self.cache.set(guildId, new Map());
   }
@@ -38,7 +38,7 @@ const self: ScheduledEventUsers = {
 
   self.cache.get(guildId)?.get(eventId)?.set(user.id, user);
  },
- remove: (user: Discord.User, guildId: string, eventId: string) => {
+ remove: (user: RUser, guildId: string, eventId: string) => {
   const cached = self.cache.get(guildId);
   if (!cached) return;
 

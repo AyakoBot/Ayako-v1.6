@@ -28,63 +28,63 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
      cmd.client.util.emotes.userFlags.DiscordEmployee,
     )} ${cmd.client.util.util.makeInlineCode(
      `${cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.Staff)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.Staff)).length,
      )}+`,
     )} ${language.userFlags.Staff} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.PartneredServerOwner,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.Partner)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.Partner)).length,
      ),
     )} ${language.userFlags.Partner} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.HypesquadEvents,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.Hypesquad)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.Hypesquad)).length,
      ),
     )} ${language.userFlags.Hypesquad} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.BugHunterLevel1,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.BugHunterLevel1)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.BugHunterLevel1)).length,
      ),
     )} ${language.userFlags.BugHunterLevel1} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.HouseBravery,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.HypeSquadOnlineHouse1)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.HypeSquadOnlineHouse1)).length,
      ),
     )} ${language.userFlags.HypeSquadOnlineHouse1} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.HouseBrilliance,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.HypeSquadOnlineHouse2)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.HypeSquadOnlineHouse2)).length,
      ),
     )} ${language.userFlags.HypeSquadOnlineHouse2} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.HouseBalance,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.HypeSquadOnlineHouse3)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.HypeSquadOnlineHouse3)).length,
      ),
     )} ${language.userFlags.HypeSquadOnlineHouse3} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.EarlySupporter,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.PremiumEarlySupporter)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.PremiumEarlySupporter)).length,
      ),
     )} ${language.userFlags.PremiumEarlySupporter} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.BugHunterLevel2,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.BugHunterLevel2)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.BugHunterLevel2)).length,
      ),
     )} ${language.userFlags.BugHunterLevel2} 
     ${cmd.client.util.constants.standard.getEmote(
@@ -93,43 +93,43 @@ export default async (cmd: Discord.ChatInputCommandInteraction) => {
      cmd.client.util.emotes.userFlags.VerifiedBot[1],
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.VerifiedBot)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.VerifiedBot)).length,
      ),
     )} ${language.userFlags.VerifiedBot} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.EarlyVerifiedBotDeveloper,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.VerifiedDeveloper)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.VerifiedDeveloper)).length,
      ),
     )} ${language.userFlags.VerifiedDeveloper} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.DiscordCertifiedModerator,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.CertifiedModerator)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.CertifiedModerator)).length,
      ),
     )} ${language.userFlags.CertifiedModerator} 
     ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.BotHTTPInteractions)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.BotHTTPInteractions)).length,
      ),
     )} ${language.userFlags.BotHTTPInteractions} 
     ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.Spammer)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.Spammer)).length,
      ),
     )} ${language.userFlags.Spammer} 
     ${cmd.client.util.constants.standard.getEmote(
      cmd.client.util.emotes.userFlags.ActiveDeveloper,
     )} ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.ActiveDeveloper)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.ActiveDeveloper)).length,
      ),
     )} ${language.userFlags.ActiveDeveloper} 
     ${cmd.client.util.util.makeInlineCode(
      cmd.client.util.splitByThousand(
-      members.filter((m) => m.user.flags?.has(Discord.UserFlags.Quarantined)).length,
+      members.filter((m) => m.user.flags?.has(RUserFlags.Quarantined)).length,
      ),
     )} ${language.userFlags.Quarantined} 
     ${cmd.client.util.constants.standard.getEmote(

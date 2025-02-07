@@ -1,11 +1,6 @@
 import type { votePunish } from '@prisma/client';
-import {
- ButtonStyle,
- ComponentType,
- PermissionFlagsBits,
- type GuildTextBasedChannel,
-} from 'discord.js';
 import client from '../../../BaseClient/Bot/Client.js';
+import { ButtonStyle, ComponentType } from 'discord-api-types/v10.js';
 
 export default async (payload: {
  id: number;

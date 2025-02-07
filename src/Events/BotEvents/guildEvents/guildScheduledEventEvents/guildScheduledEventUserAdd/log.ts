@@ -2,7 +2,7 @@ import type * as Discord from 'discord.js';
 import client from '../../../../../BaseClient/Bot/Client.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
-export default async (event: Discord.GuildScheduledEvent, user: Discord.User) => {
+export default async (event: Discord.GuildScheduledEvent, user: RUser) => {
  const guild = event.guild ?? (event.guildId ? client.guilds.cache.get(event.guildId) : undefined);
  if (!guild) return;
 

@@ -1,7 +1,7 @@
 import * as CT from '../../../../Typings/Typings.js';
 
 export default async (
- cmd: Discord.UserSelectMenuInteraction | Discord.ModalMessageModalSubmitInteraction,
+ cmd: RUserSelectMenuInteraction | Discord.ModalMessageModalSubmitInteraction,
  args: string[],
 ) => {
  if (!cmd.inCachedGuild()) return;
@@ -22,7 +22,7 @@ export default async (
 
  const language = await cmd.client.util.getLanguage(cmd.guildId);
  const values =
-  cmd instanceof Discord.UserSelectMenuInteraction
+  cmd instanceof RUserSelectMenuInteraction
    ? cmd.users.map((u) => u.id)
    : cmd.fields
       .getTextInputValue(fieldName)

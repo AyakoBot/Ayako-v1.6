@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import * as Sharding from 'discord-hybrid-sharding';
+import { ClusterManager, ReClusterManager } from 'discord-hybrid-sharding';
 import 'dotenv/config';
 import readline from 'readline';
 
-const Manager = new Sharding.ClusterManager(`./dist/bot.js`, {
+const Manager = new ClusterManager(`./dist/bot.js`, {
  totalShards: 'auto',
  totalClusters: 'auto',
  shardsPerClusters: 10,
@@ -18,7 +18,7 @@ const Manager = new Sharding.ClusterManager(`./dist/bot.js`, {
  mode: 'process',
 });
 
-Manager.extend(new Sharding.ReClusterManager({ restartMode: 'rolling' }));
+Manager.extend(new ReClusterManager({ restartMode: 'rolling' }));
 
 await Manager.spawn()
  .then(() => {

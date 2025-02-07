@@ -4,7 +4,7 @@ import {
  type GatewaySubscriptionCreateDispatchData,
  type GatewaySubscriptionDeleteDispatchData,
  type GatewaySubscriptionUpdateDispatchData,
-} from 'discord.js';
+} from 'discord-api-types/v10.js';
 
 export default {
  [GatewayDispatchEvents.SubscriptionCreate]: (_: GatewaySubscriptionCreateDispatchData) =>

@@ -1,18 +1,19 @@
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.rp,
  desc: t.stp(t.JSON.slashCommands.rp.desc, { t }),
  author: t.stp(t.JSON.slashCommands.rp.author, { t }),
- notBlocked: (user: Discord.User) =>
+ notBlocked: (user: RUser) =>
   t.stp(t.JSON.slashCommands.rp.notBlocked, {
    user: t.languageFunction.getUser(user),
   }),
- unblocked: (user: Discord.User) =>
+ unblocked: (user: RUser) =>
   t.stp(t.JSON.slashCommands.rp.unblocked, {
    user: t.languageFunction.getUser(user),
   }),
- blocked: (user: Discord.User) =>
+ blocked: (user: RUser) =>
   t.stp(t.JSON.slashCommands.rp.blocked, {
    user: t.languageFunction.getUser(user),
   }),

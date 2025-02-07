@@ -74,7 +74,7 @@ export const isReactable = (msg: Discord.Message<true>, emoji: string, me: Disco
  * @param user - The user object or an object with `id` and `client` properties.
  * @returns A boolean indicating whether the user has blocked the bot.
  */
-const hasBlocked = async (user: Discord.User | { id: string; client: Discord.Client<true> }) => {
+const hasBlocked = async (user: RUser | { id: string; client: Discord.Client<true> }) => {
  const u = await user.client.util.DataBase.blockingUsers.findUnique({ where: { userId: user.id } });
 
  if (!u) return false;
@@ -96,7 +96,7 @@ const hasBlocked = async (user: Discord.User | { id: string; client: Discord.Cli
  */
 const saveBlocked = async (
  err: string,
- user: Discord.User | { id: string; client: Discord.Client<true> },
+ user: RUser | { id: string; client: Discord.Client<true> },
 ) => {
  if (!err.includes('Reaction blocked')) return;
 

@@ -1,42 +1,43 @@
+import type { RChannel, RMessage, RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.events.logs.message,
- descDeleteAudit: (user: Discord.User, msg: Discord.Message) =>
+ descDeleteAudit: (user: RUser, msg: RMessage, author: RUser) =>
   t.stp(t.JSON.events.logs.message.descDeleteAudit, {
    user: t.languageFunction.getUser(user),
    msg: t.languageFunction.getMessage(msg),
-   author: t.languageFunction.getUser(msg.author),
+   author: t.languageFunction.getUser(author),
   }),
- descDelete: (msg: Discord.Message) =>
+ descDelete: (msg: RMessage, author: RUser) =>
   t.stp(t.JSON.events.logs.message.descDelete, {
    msg: t.languageFunction.getMessage(msg),
-   author: t.languageFunction.getUser(msg.author),
+   author: t.languageFunction.getUser(author),
   }),
- descDeleteBulkAudit: (user: Discord.User, size: number, channel: Discord.GuildTextBasedChannel) =>
+ descDeleteBulkAudit: (user: RUser, size: number, channel: RChannel) =>
   t.stp(t.JSON.events.logs.message.descDeleteBulkAudit, {
    user: t.languageFunction.getUser(user),
    size,
    channel: t.languageFunction.getChannel(channel),
   }),
- descDeleteBulk: (size: number, channel: Discord.GuildTextBasedChannel) =>
+ descDeleteBulk: (size: number, channel: RChannel) =>
   t.stp(t.JSON.events.logs.message.descDeleteBulk, {
    size,
    channel: t.languageFunction.getChannel(channel),
   }),
- descUpdateMaybe: (msg: Discord.Message) =>
+ descUpdateMaybe: (msg: RMessage, author: RUser) =>
   t.stp(t.JSON.events.logs.message.descUpdateMaybe, {
    msg: t.languageFunction.getMessage(msg),
-   user: t.languageFunction.getUser(msg.author),
+   user: t.languageFunction.getUser(author),
   }),
- descUpdate: (msg: Discord.Message) =>
+ descUpdate: (msg: RMessage) =>
   t.stp(t.JSON.events.logs.message.descUpdate, {
    msg: t.languageFunction.getMessage(msg),
   }),
- descUpdateAuthor: (msg: Discord.Message) =>
+ descUpdateAuthor: (msg: RMessage, author: RUser) =>
   t.stp(t.JSON.events.logs.message.descUpdateAuthor, {
    msg: t.languageFunction.getMessage(msg),
-   user: t.languageFunction.getUser(msg.author),
+   user: t.languageFunction.getUser(author),
   }),
  activity: {
   1: t.JSON.events.logs.message.activity[1],

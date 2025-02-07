@@ -4,7 +4,7 @@ import * as CT from '../../../../../Typings/Typings.js';
 
 export default async (
  event: Discord.GuildScheduledEvent,
- users: Map<string, Discord.User> | undefined,
+ users: Map<string, RUser> | undefined,
 ) => {
  const guild = event.guild ?? client.guilds.cache.get(event.guildId);
  if (!guild) return;

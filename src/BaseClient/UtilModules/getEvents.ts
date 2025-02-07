@@ -11,36 +11,19 @@ export enum ProcessEvents {
  SIGUSR2 = 'SIGUSR2',
 }
 
-// related to /BaseClient/Cluster/PG.ts
+// related to /BaseClient/Cluster/Redis.ts
 enum MessageType {
  Appeal = 'appeal',
  Vote = 'vote',
  Interaction = 'interaction',
 }
 
-// realted to Discord.RestEvents
+// related to RestEvents
 enum RestEvents {
  rateLimited,
  restDebug,
  response,
 }
-
-/**
- * Retrieves the bot events by scanning the specified event path.
- * @returns {Promise<string[]>} A promise that resolves to an array of bot events.
- */
-export const getBotEvents = async () =>
- (await glob(`${eventPath}/BotEvents/**/*`))
-  .filter((path) => path.endsWith('.js'))
-  .filter((path) => {
-   const eventName = path.replace('.js', '').split(/\/+/).pop();
-
-   if (!eventName) return false;
-   if (!Object.values(Discord.Events).includes(eventName as never)) {
-    return false;
-   }
-   return true;
-  });
 
 /**
  * Retrieves the process events from the specified event path.
@@ -86,13 +69,12 @@ export const getRestEvents = async () =>
 const events = {
  ProcessEvents: await getProcessEvents(),
  ClusterEvents: await getClusterEvents(),
- BotEvents: await getBotEvents(),
  RestEvents: await getRestEvents(),
 };
 
 /**
  * Retrieves and returns the events for the client.
- * @returns {Promise<{ ProcessEvents: string[], ClusterEvents: string[], BotEvents: string[] }>}
+ * @returns {Promise<{ ProcessEvents: string[], ClusterEvents: string[],  }>}
  * The events for the client.
  */
 export default events;

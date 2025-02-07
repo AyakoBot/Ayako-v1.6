@@ -426,7 +426,7 @@ const doVoiceStatus = async (
  levelData: LevelData,
  settings: leveling,
  language: CT.Language,
- user: Discord.User,
+ user: RUser,
 ) => {
  channel.client.util.channelStatusManager.add(
   channel,
@@ -569,7 +569,7 @@ const doEmbed = async (
  language: CT.Language,
  levelData: LevelData,
  setting: Prisma.leveling,
- user: Discord.User,
+ user: RUser,
 ) => {
  const getDefaultEmbed = async (): Promise<Discord.APIEmbed> => ({
   author: {
@@ -609,7 +609,7 @@ const send = async <T extends Discord.Message<true> | Discord.BaseGuildVoiceChan
  msg: T,
  embed: Discord.APIEmbed,
  setting: Prisma.leveling,
- user: T extends Discord.Message<true> ? undefined : Discord.User,
+ user: T extends Discord.Message<true> ? undefined : RUser,
 ) => {
  const channelId = msg instanceof Discord.Message ? msg.channelId : msg.id;
 

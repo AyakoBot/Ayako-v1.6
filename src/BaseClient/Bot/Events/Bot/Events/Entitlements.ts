@@ -4,7 +4,7 @@ import {
  type GatewayEntitlementCreateDispatchData,
  type GatewayEntitlementDeleteDispatchData,
  type GatewayEntitlementUpdateDispatchData,
-} from 'discord.js';
+} from 'discord-api-types/v10';
 
 export default {
  [GatewayDispatchEvents.EntitlementCreate]: (_: GatewayEntitlementCreateDispatchData) => undefined,

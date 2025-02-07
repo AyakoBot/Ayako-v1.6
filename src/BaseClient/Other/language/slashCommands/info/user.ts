@@ -1,3 +1,5 @@
+import { inlineCode } from '@discordjs/builders';
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
@@ -6,12 +8,12 @@ export default (t: CT.Language) => ({
  authorBot: t.stp(t.JSON.slashCommands.info.user.authorBot, { t }),
  memberAuthorUser: t.stp(t.JSON.slashCommands.info.user.memberAuthorUser, { t }),
  memberAuthorBot: t.stp(t.JSON.slashCommands.info.user.memberAuthorBot, { t }),
- userInfo: (user: Discord.User) =>
+ userInfo: (user: RUser) =>
   t.stp(t.JSON.slashCommands.info.user.userInfo, {
    user,
    conUser: t.util.constants.standard.user(user),
-   accentColor: user.accentColor
-    ? `\`${user.accentColor}\`/\`${user.hexAccentColor}\``
+   accentColor: user.accent_color
+    ? `\`${user.accent_color}\`/\`${user.accent_color.toString(16)}\``
     : t.JSON.t.None,
   }),
  botInfo: (res: CT.TopGGResponse<true>, id: string) =>
@@ -21,7 +23,7 @@ export default (t: CT.Language) => ({
    website: res.website ?? t.JSON.t.None,
    support: res.support ? `https://discord.gg/${res.support}` : t.JSON.t.None,
    github: res.github ?? t.JSON.t.None,
-   prefix: res.prefix ? Discord.inlineCode(res.prefix) : t.JSON.t.Unknown,
+   prefix: res.prefix ? inlineCode(res.prefix) : t.JSON.t.Unknown,
    invite: res.invite ?? t.util.constants.standard.getBotAddURL(id),
    allVotes: res.points ?? '0',
    monthVotes: res.monthlyPoints ?? '0',

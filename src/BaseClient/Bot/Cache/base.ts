@@ -141,11 +141,13 @@ export default abstract class Cache<
 > {
  public prefix: string;
  public redis: Redis;
+ public ttl: number;
  abstract keys: ReadonlyArray<keyof DeriveRFromAPI<T, K>>;
 
- constructor(prefix: string, redis: Redis) {
+ constructor(prefix: string, redis: Redis, ttl: number = 1209600) {
   this.prefix = prefix;
   this.redis = redis;
+  this.ttl = ttl;
  }
 
  // eslint-disable-next-line class-methods-use-this

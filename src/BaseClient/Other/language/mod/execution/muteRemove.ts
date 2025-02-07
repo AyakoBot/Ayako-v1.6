@@ -1,3 +1,4 @@
+import type { RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
@@ -6,11 +7,11 @@ export default (t: CT.Language) => ({
   t.stp(t.JSON.mod.execution.muteRemove.dm, {
    options,
   }),
- alreadyApplied: (target: Discord.User) =>
+ alreadyApplied: (target: RUser) =>
   t.stp(t.JSON.mod.execution.muteRemove.alreadyApplied, {
    target: t.languageFunction.getUser(target),
   }),
- success: (target: Discord.User) =>
+ success: (target: RUser) =>
   t.stp(t.JSON.mod.execution.muteRemove.success, {
    target: t.languageFunction.getUser(target),
   }),

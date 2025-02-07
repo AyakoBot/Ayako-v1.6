@@ -121,7 +121,7 @@ export class GuildChannel extends Discord.GuildChannel {
 }
 
 // @ts-ignore
-export class User extends Discord.User {
+export class User extends RUser {
  constructor(client: Discord.Client<true>, data: RawData.RawUserData) {
   super(client, data);
  }
@@ -301,7 +301,7 @@ export class ChatInputCommandInteraction extends Discord.ChatInputCommandInterac
  }
 }
 
-export class UserContextMenuCommandInteraction extends Discord.UserContextMenuCommandInteraction {
+export class UserContextMenuCommandInteraction extends RUserContextMenuCommandInteraction {
  constructor(client: Discord.Client<true>, data: RawData.RawInteractionData) {
   super(client, data);
  }
@@ -359,7 +359,7 @@ export class StringSelect extends Discord.StringSelectMenuInteraction {
 }
 
 // @ts-ignore
-export class UserSelect extends Discord.UserSelectMenuInteraction {
+export class UserSelect extends RUserSelectMenuInteraction {
  constructor(client: Discord.Client<true>, data: Discord.APIMessageUserSelectInteractionData) {
   super(client, data);
  }

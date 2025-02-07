@@ -6,7 +6,7 @@ import * as CT from '../../../Typings/Typings.js';
 export default async (
  vote: CT.TopGGVote,
  guild: Discord.Guild,
- user: Discord.User,
+ user: RUser,
  member: Discord.GuildMember | undefined,
  setting: Prisma.votesettings,
 ) => {
@@ -101,8 +101,8 @@ export default async (
 
 export const doAnnouncement = async (
  settings: Prisma.votesettings,
- user: Discord.User,
- voted: Discord.User | Discord.Guild,
+ user: RUser,
+ voted: RUser | Discord.Guild,
  language: CT.Language,
  rewards: Prisma.voterewards[],
 ) => {
@@ -249,7 +249,7 @@ export const end = async (vote: votes, guild: Discord.Guild) => {
  });
 };
 
-export const currency = (r: Prisma.voterewards, user: Discord.User, guild: Discord.Guild) => {
+export const currency = (r: Prisma.voterewards, user: RUser, guild: Discord.Guild) => {
  if (!r.rewardcurrency) return;
 
  guild.client.util.DataBase.balance
@@ -264,7 +264,7 @@ export const currency = (r: Prisma.voterewards, user: Discord.User, guild: Disco
 export const roles = async (
  r: string[],
  member: Discord.GuildMember | undefined,
- bot: Discord.User,
+ bot: RUser,
  language: CT.Language,
 ) => {
  if (!r.length) return;
@@ -273,7 +273,7 @@ export const roles = async (
  bot.client.util.roleManager.add(member, r, language.events.vote.botReason(bot), 1);
 };
 
-export const xp = (r: Prisma.voterewards, user: Discord.User, guild: Discord.Guild) => {
+export const xp = (r: Prisma.voterewards, user: RUser, guild: Discord.Guild) => {
  if (!r.rewardxp) return;
 
  guild.client.util.DataBase.level
@@ -285,7 +285,7 @@ export const xp = (r: Prisma.voterewards, user: Discord.User, guild: Discord.Gui
   .then();
 };
 
-export const xpmultiplier = (r: Prisma.voterewards, user: Discord.User, guild: Discord.Guild) => {
+export const xpmultiplier = (r: Prisma.voterewards, user: RUser, guild: Discord.Guild) => {
  if (!r.rewardxpmultiplier) return;
 
  guild.client.util.DataBase.level

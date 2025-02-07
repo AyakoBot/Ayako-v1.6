@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
  GatewayDispatchEvents,
- GuildMemberFlagsBitField,
+ GuildMemberFlags,
  type APIGuildMember,
  type GatewayGuildAuditLogEntryCreateDispatchData,
  type GatewayGuildBanAddDispatchData,
@@ -26,11 +26,11 @@ import {
  type GatewayGuildSoundboardSoundUpdateDispatchData,
  type GatewayGuildStickersUpdateDispatchData,
  type GatewayGuildUpdateDispatchData,
-} from 'discord.js';
+} from 'discord-api-types/v10.js';
 import RedisClient, {
  cache as redis,
  prefix as redisKey,
-} from '../../../../BaseClient/Bot/Redis.js';
+} from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.GuildAuditLogEntryCreate]: (
@@ -80,10 +80,14 @@ export default {
  [GatewayDispatchEvents.GuildIntegrationsUpdate]: (_: GatewayGuildIntegrationsUpdateDispatchData) =>
   undefined,
 
- [GatewayDispatchEvents.GuildMemberAdd]: (data: GatewayGuildMemberAddDispatchData) => {
+ [GatewayDispatchEvents.GuildMemberAdd]: async (data: GatewayGuildMemberAddDispatchData) => {
   redis.members.set(data, data.guild_id);
-
   redis.users.set(data.user);
+
+  const guild = await redis.guilds.get(data.guild_id);
+  if (!guild) return;
+  guild.member_count += 1;
+  redis.guilds._set(guild);
  },
 
  [GatewayDispatchEvents.GuildMemberRemove]: (data: GatewayGuildMemberRemoveDispatchData) => {
@@ -111,7 +115,7 @@ export default {
      joined_at: data.joined_at || new Date().toISOString(),
      mute: data.mute || false,
      deaf: data.deaf || false,
-     flags: data.flags || new GuildMemberFlagsBitField().bitfield,
+     flags: data.flags || (0 as GuildMemberFlags),
     },
     data.guild_id,
    );
@@ -126,7 +130,7 @@ export default {
     ...mergedMember,
     deaf: mergedMember.deaf || false,
     mute: mergedMember.mute || false,
-    flags: mergedMember.flags || new GuildMemberFlagsBitField().bitfield,
+    flags: mergedMember.flags || (0 as GuildMemberFlags),
     joined_at: mergedMember.joined_at || new Date().toISOString(),
    },
    data.guild_id,

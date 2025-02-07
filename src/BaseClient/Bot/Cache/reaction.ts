@@ -30,8 +30,9 @@ export default class ReactionCache extends Cache<APIReaction> {
   const rData = this.apiToR(data, guildId, channelId, messageId);
   if (!rData) return false;
 
-  await this.redis.set(
+  await this.redis.setex(
    `${this.key()}:${rData.guild_id}:${rData.message_id}:${data.emoji.id || data.emoji.name}`,
+   this.ttl,
    JSON.stringify(rData),
   );
 

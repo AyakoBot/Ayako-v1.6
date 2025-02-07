@@ -1,18 +1,19 @@
+import type { RRole, RUser } from 'src/Typings/Redis.js';
 import * as CT from '../../../../Typings/Typings.js';
 
 export default (t: CT.Language) => ({
  ...t.JSON.slashCommands.resetLevels,
  areYouSure: (time: string) => t.stp(t.JSON.slashCommands.resetLevels.areYouSure, { t: time }),
- confirmUser: (user: Discord.User) =>
+ confirmUser: (user: RUser) =>
   t.stp(t.JSON.slashCommands.resetLevels.confirmUser, { user: t.languageFunction.getUser(user) }),
- confirmRole: (role: Discord.Role, amount: number) =>
+ confirmRole: (role: RRole, amount: number) =>
   t.stp(t.JSON.slashCommands.resetLevels.confirmRole, {
    role: t.languageFunction.getRole(role),
    amount: t.util.splitByThousand(amount),
   }),
- user: (user: Discord.User) =>
+ user: (user: RUser) =>
   t.stp(t.JSON.slashCommands.resetLevels.user, { user: t.languageFunction.getUser(user) }),
- role: (role: Discord.Role, amount: number) =>
+ role: (role: RRole, amount: number) =>
   t.stp(t.JSON.slashCommands.resetLevels.role, {
    role: t.languageFunction.getRole(role),
    amount: t.util.splitByThousand(amount),

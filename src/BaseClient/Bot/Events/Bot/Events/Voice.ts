@@ -4,8 +4,8 @@ import {
  type GatewayVoiceChannelEffectSendDispatchData,
  type GatewayVoiceServerUpdateDispatchData,
  type GatewayVoiceStateUpdateDispatchData,
-} from 'discord.js';
-import { cache as redis } from '../../../../BaseClient/Bot/Redis.js';
+} from 'discord-api-types/v10.js';
+import { cache as redis } from '../../../Redis.js';
 
 export default {
  [GatewayDispatchEvents.VoiceChannelEffectSend]: (_: GatewayVoiceChannelEffectSendDispatchData) =>

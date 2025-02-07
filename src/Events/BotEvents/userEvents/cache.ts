@@ -1,6 +1,6 @@
 import type * as Discord from 'discord.js';
 
-export default async (user: Discord.User) => {
+export default async (user: RUser) => {
  user.client.util.DataBase.users
   .upsert({
    where: { userid: user.id },
